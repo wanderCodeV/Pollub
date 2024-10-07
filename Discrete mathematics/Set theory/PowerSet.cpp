@@ -16,7 +16,7 @@ vector<bool> bitset_of_number(int num)
     }
     return bits;
 }
-void print_power_set(int * arr, int n)
+void print_power_set(int n)
 {
     cout << "Zbiór potęgowy:\n";
     cout << "1) pusty zbiór\n";
@@ -25,14 +25,10 @@ void print_power_set(int * arr, int n)
     {
         cout << i + 1 << ") ";
         current_bitset = bitset_of_number(i);
-        int start_number = n + 1 - current_bitset.size();
+
         for(int i = 0 ; i < current_bitset.size(); i++)
-        {
             if(current_bitset[i])
-            {
-                cout << i + 1 << " ";    
-            }
-        }
+                cout << i + 1 << " ";
         cout << "\n";
     }
 }
@@ -41,10 +37,5 @@ int main()
     int n;
     cout << "Wprowadź liczbę n: ";
     cin >> n;
-    int arr[NMAX];
-    for(int i = 0; i < n; i++)
-    {
-        arr[i] = i + 1;
-    }
-    print_power_set(arr, n);
+    print_power_set( n);
 }
