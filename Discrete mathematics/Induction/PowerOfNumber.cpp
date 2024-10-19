@@ -6,14 +6,14 @@ using namespace std;
 double calculatePower(double a, int n) 
 {
     double result = 1.0;
-    int power_of_two = 1; 
+    int power_of_a = a; 
 
     while (n > 0) 
     {
         if (n % 2 == 1) 
-            result *= pow(a, power_of_two);
+            result *= power_of_a;
         n /= 2; 
-        power_of_two *= 2; 
+        power_of_a *= power_of_a; 
     }
 
     return result;
