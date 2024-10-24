@@ -7,53 +7,34 @@
 
 using namespace std;
 
-struct bitset{
-    vector <bool> bits; //reversed bitset
-    int count_ones = 0;
-};
-
-bitset bitset_of_number(int num)
+void print_set(int k_element[], int size)
 {
-    bitset number;
-    while(num != 0)
-    {
-        if(num%2) number.count_ones++;
-        number.bits.push_back(num % 2);
-        num /= 2;
-        
-    }
-    return number;
+    for (int i = 0; i < size; i++)
+        cout << k_element[i] << " ";
+    cout << "\n";
 }
-void print_k_element_power_set(int n, int k)
+void k_element_power_set(int n, int k, int set_size, int k_element[])
 {
-    cout << "K-elementowy zbiory potęgowy:\n";
-    if(k == 0)
+    if(k > 0)
     {
-        cout << "pusty zbiór\n";
-        return;
-    }
-
-    bitset current_bitset;
-    for(int i = 1; i < 1<<n; i++)
-    {
-        current_bitset = bitset_of_number(i);
-        if(current_bitset.count_ones == k)
+        k--;
+        while(n > 0)
         {
-            for(int i = 0 ; i < current_bitset.bits.size(); i++)
-                if(current_bitset.bits[i])
-                    cout << i + 1 << " ";
-            cout << "\n";
+            k_element[k] = n;
+            k_element_power_set(--n, k, set_size, k_element);
         }
     }
+    else print_set(k_element, set_size);
 }
 int main()
 {
     int n, k;
+    int k_element[NMAX] = {};
     cout << "Wprowadź liczbę n: ";
     cin >> n;
 
     cout << "Wprowadź liczbę k: ";
     cin >> k;
 
-    print_k_element_power_set(n, k);
+    k_element_power_set(n, k, k, k_element);
 }
