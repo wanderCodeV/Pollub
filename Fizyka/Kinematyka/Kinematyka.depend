@@ -1,7 +1,14 @@
 # depslib dependency file v1.0
-1730388251 source:d:\programing\github\university\pollub\fizyka\kinematyka\main.cpp
+1730390108 source:d:\programing\github\university\pollub\fizyka\kinematyka\main.cpp
 	<SFML/Graphics.hpp>
+	<iostream>
+	<sstream>
+	<stack>
+	<string>
 	<cmath>
+	<cctype>
+	<map>
+	<vector>
 
 1730385871 c:\soft\sfml-2.6.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
