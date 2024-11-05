@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730390108 source:d:\programing\github\university\pollub\fizyka\kinematyka\main.cpp
+1730715180 source:d:\programing\github\university\pollub\fizyka\kinematyka\main.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<sstream>

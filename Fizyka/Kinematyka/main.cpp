@@ -200,13 +200,13 @@ int main()
     auto postfixX2 = infixToPostfix(tokensX2);
     auto postfixY2 = infixToPostfix(tokensY2);
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Vector Simulation");
+    sf::RenderWindow window(sf::VideoMode(1920, 1080), "SFML Vector Simulation");
     window.setFramerateLimit(200);
 
     sf::CircleShape point1(5);
     sf::CircleShape point2(5);
     point1.setFillColor(sf::Color::Red);
-    point2.setFillColor(sf::Color::Blue);
+    point2.setFillColor(sf::Color::Yellow);
 
     float t = 0.0f;
     const float dt = 0.01f;
@@ -246,10 +246,10 @@ t ^ 2
 t ^ 2
 2
 
-10 * sin ( t )
-5 * cos ( t )
-5 * t
-10 - t
+10*sin(t)
+5*cos(t)
+5*t
+10-t
 
 t
 t
@@ -260,4 +260,10 @@ t
 10 * sin ( t )
 5 * cos ( t )
 5 * sin ( t )
+
+
+t^2
+0
+10+10*t
+0
 */
