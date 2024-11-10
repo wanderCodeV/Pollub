@@ -56,7 +56,6 @@ def walka(przeciwnik_hp, przeciwnik_obr_min, przeciwnik_obr_max, nagroda_zloto, 
         kolej_gracza = not kolej_gracza
 
     if akthp > 0:
-        
         zloto += nagroda_zloto
         exp += nagroda_exp
         print("\nWygrałeś! Zdobywasz", nagroda_zloto, "złota i", nagroda_exp, "doświadczenia.")
