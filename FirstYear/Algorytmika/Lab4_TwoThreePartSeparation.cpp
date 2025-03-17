@@ -120,7 +120,7 @@ int main()
             wyswietlStudentow(tab, 0, first_group);
             cout << "\nStudenci, ktorzy otrzymali > 10 punktow:\n";
             wyswietlStudentow(tab, first_group + 1, n-1);
-
+            break;
         }
         case 2:
         {
@@ -134,6 +134,7 @@ int main()
             wyswietlStudentow(tab, first_group + 1, second_group - 1);
             cout << "\nStudenci, ktorzy otrzymali liczbe punktow podzielnych przez 3 z reszta 2:\n";
             wyswietlStudentow(tab, second_group, n -1);
+            break;
         }
         default:
             break;
