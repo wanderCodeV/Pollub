@@ -27,7 +27,7 @@ void tworzShift_kmp(string wzor, int* s)
             k = s[k];
         if (wzor[k] == wzor[i])
             k++;
-        s[i] = k;
+        s[i+1] = k;
     }
 }
 void kmp ( string text, string wzor)
