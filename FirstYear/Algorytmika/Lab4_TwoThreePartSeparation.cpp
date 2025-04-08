@@ -7,7 +7,8 @@
 #include <utility>
 using namespace std;
 
-struct TStudent {
+struct TStudent
+{
     string name;
     string surname;
     int punkty;
@@ -67,9 +68,9 @@ int sort_two_parts(TStudent* &tab, int n)
         }
     }
     if(tab[st].punkty <= 10)
-        return st;   
+        return st;
     else
-        return st-1;	
+        return st-1;
 }
 
 void sort_three_part(TStudent* &tab, int n, int &p1, int &p2)
@@ -95,7 +96,7 @@ void sort_three_part(TStudent* &tab, int n, int &p1, int &p2)
         }
     }
     p1 = st;
-    p2 = fn; 	
+    p2 = fn;
 }
 int main()
 {
@@ -111,33 +112,33 @@ int main()
     cin >> option;
     switch (option)
     {
-        case 1:
-        {
-            cout << "Przed:\n";
-            wyswietlStudentow(tab, 0, n-1);
-            int first_group = sort_two_parts(tab, n);
-            cout << "\nPo:\nStudenci, ktorzy otrzymali <= 10 punktow:\n";
-            wyswietlStudentow(tab, 0, first_group);
-            cout << "\nStudenci, ktorzy otrzymali > 10 punktow:\n";
-            wyswietlStudentow(tab, first_group + 1, n-1);
-            break;
-        }
-        case 2:
-        {
-            cout << "Przed:\n";
-            wyswietlStudentow(tab, 0, n-1);
-            int first_group, second_group;
-            sort_three_part(tab, n, first_group, second_group);
-            cout << "\nPo:\nStudenci, ktorzy otrzymali liczbe punktow podzielnych przez 3:\n";
-            wyswietlStudentow(tab, 0, first_group);
-            cout << "\nStudenci, ktorzy otrzymali liczbe punktow podzielnych przez 3 z reszta 1:\n";
-            wyswietlStudentow(tab, first_group + 1, second_group - 1);
-            cout << "\nStudenci, ktorzy otrzymali liczbe punktow podzielnych przez 3 z reszta 2:\n";
-            wyswietlStudentow(tab, second_group, n -1);
-            break;
-        }
-        default:
-            break;
+    case 1:
+    {
+        cout << "Przed:\n";
+        wyswietlStudentow(tab, 0, n-1);
+        int first_group = sort_two_parts(tab, n);
+        cout << "\nPo:\nStudenci, ktorzy otrzymali <= 10 punktow:\n";
+        wyswietlStudentow(tab, 0, first_group);
+        cout << "\nStudenci, ktorzy otrzymali > 10 punktow:\n";
+        wyswietlStudentow(tab, first_group + 1, n-1);
+        break;
+    }
+    case 2:
+    {
+        cout << "Przed:\n";
+        wyswietlStudentow(tab, 0, n-1);
+        int first_group, second_group;
+        sort_three_part(tab, n, first_group, second_group);
+        cout << "\nPo:\nStudenci, ktorzy otrzymali liczbe punktow podzielnych przez 3:\n";
+        wyswietlStudentow(tab, 0, first_group);
+        cout << "\nStudenci, ktorzy otrzymali liczbe punktow podzielnych przez 3 z reszta 1:\n";
+        wyswietlStudentow(tab, first_group + 1, second_group - 1);
+        cout << "\nStudenci, ktorzy otrzymali liczbe punktow podzielnych przez 3 z reszta 2:\n";
+        wyswietlStudentow(tab, second_group, n -1);
+        break;
+    }
+    default:
+        break;
     }
 
     usunTabliceStudentow(tab);

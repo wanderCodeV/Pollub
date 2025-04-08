@@ -4,17 +4,17 @@ using namespace std;
 
 void naiwny(string text, string wzor)
 {
-	int dw, dt, i, j;
-	dw = wzor.size();
-	dt = text.size();
-	for(int i = 0; i < dt - dw + 1 ; i++)
-	{
-		int j = 0;
-		while(wzor[j] == text[i+j] && j < dw)
-			j++;
-		if(j == dw) 
-			cout << "Wzorzec jest od pozycji " << i << endl;
-	}
+    int dw, dt, i, j;
+    dw = wzor.size();
+    dt = text.size();
+    for(int i = 0; i < dt - dw + 1 ; i++)
+    {
+        int j = 0;
+        while(wzor[j] == text[i+j] && j < dw)
+            j++;
+        if(j == dw)
+            cout << "Wzorzec jest od pozycji " << i << endl;
+    }
 }
 void tworzShift_kmp(string wzor, int* s)
 {
@@ -43,11 +43,11 @@ void kmp ( string text, string wzor)
             j++;
         if (j == dw)
             cout<<"Wzorzec jest od pozycji "<<i << endl;
-		if (j - P[j] > 1)
+        if (j - P[j] > 1)
             i += j - P[j];
         else i++;
 
-		j = P[j];
+        j = P[j];
     }
 }
 void tworzShift_bm(string wzor, int tabs[])
@@ -55,9 +55,9 @@ void tworzShift_bm(string wzor, int tabs[])
     int k = 256; //k – liczba elementów w alfabecie
     int i;
     int m = wzor.size();
-    for (i = 0; i < k; i++) 
+    for (i = 0; i < k; i++)
         tabs[i] = -1;
-    for (i = 0; i < m; i++) 
+    for (i = 0; i < m; i++)
         tabs[wzor[i]] = i;
 }
 
@@ -66,10 +66,10 @@ void bm(string text, string wzor)
     int tabs[256];
     tworzShift_bm(wzor, tabs);
 
-	int dn = text.size();
+    int dn = text.size();
     int dw = wzor.size();
     int i = 0;
-	int j, x;
+    int j, x;
 
     while ( i < dn - dw + 1)
     {
@@ -110,20 +110,20 @@ int main()
     cout << "Podaj tekst w ktorym bedzie szukany podany wzorzec: ";
     getline(cin, text);
 
-	cout << example << "\n" << text << endl;
+    cout << example << "\n" << text << endl;
     switch(option)
     {
-        case 1:
-            cout << "=== Algorytm naiwny ===\n";
-            naiwny(text, example);
-            // break;
-        case 2:
-            cout << "=== Algorytm Knutha-Morrisa-Pratta ===\n";
-            kmp(text, example);
-            // break;
-        case 3:
-			cout << "=== Algorytm Boyer’a-Moore’a ===\n";
-			bm(text, example);
-			break;
+    case 1:
+        cout << "=== Algorytm naiwny ===\n";
+        naiwny(text, example);
+    // break;
+    case 2:
+        cout << "=== Algorytm Knutha-Morrisa-Pratta ===\n";
+        kmp(text, example);
+    // break;
+    case 3:
+        cout << "=== Algorytm Boyer’a-Moore’a ===\n";
+        bm(text, example);
+        break;
     }
 }

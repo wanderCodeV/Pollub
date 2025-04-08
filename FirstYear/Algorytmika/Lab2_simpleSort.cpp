@@ -10,7 +10,7 @@ void przydzielPamiec1D(int *&tab, int n)
 }
 
 void przydzielPamiec2D(int **&tab, int w, int k)
- {
+{
     tab = new int *[w];
     for (int i = 0; i < w; i++)
         tab[i] = new int[k];
@@ -141,91 +141,91 @@ int main()
         cin >> option;
         switch (option)
         {
-            case 1:
-            {
-                int *tab = nullptr;
-                int n, a, b, mode = 0;
-                cout << "Podaj rozmiar tablicy jednowymiarowej: ";
-                cin >> n;
-                cout << "Podaj przedzial <a,b>: ";
-                cin >> a >> b;
-                cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
-                cin >> mode;
-                przydzielPamiec1D(tab, n);
-                wypelnijTablice1D(tab, n, a, b);
-                cout << "Przed: ";
-                wyswietl1D(tab, n);
-                sortowanieBabelkowe(tab, n, mode);
-                cout << "Po: ";
-                wyswietl1D(tab, n);
-                usunTablice1D(tab);
-                break;
-            }
-            case 2:
-            {
-                int *tab = nullptr;
-                int n, a, b, mode = 0;
-                cout << "Podaj rozmiar tablicy jednowymiarowej: ";
-                cin >> n;
-                cout << "Podaj przedzial <a,b>: ";
-                cin >> a >> b;
-                cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
-                cin >> mode;
-                przydzielPamiec1D(tab, n);
-                wypelnijTablice1D(tab, n, a, b);
-                cout << "Przed: ";
-                wyswietl1D(tab, n);
-                sortowaniePrzezWybor(tab, n, mode);
-                cout << "Po: ";
-                wyswietl1D(tab, n);
-                usunTablice1D(tab);
-                break;
-            }
-            case 3:
-            {
-                int *tab = nullptr;
-                int n, a, b, mode = 0;
-                cout << "Podaj rozmiar tablicy jednowymiarowej: ";
-                cin >> n;
-                cout << "Podaj przedzial <a,b>: ";
-                cin >> a >> b;
-                cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
-                cin >> mode;
-                przydzielPamiec1D(tab, n);
-                wypelnijTablice1D(tab, n, a, b);
-                cout << "Przed: ";
-                wyswietl1D(tab, n);
-                sortowaniePrzezWstawianie(tab, n, mode);
-                cout << "Po: ";
-                wyswietl1D(tab, n);
-                usunTablice1D(tab);
-                break;
-            }
-            case 4:
-            {
-                int** tab = nullptr;
-                int w, k, a, b, mode, numCol;
-                cout << "Podaj rozmiar tablicy dwuwymiarowej: ";
-                cin >> w >> k;
-                cout << "Podaj przedzial <a,b>: ";
-                cin >> a >> b;
-                cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
-                cin >> mode;
-                cout << "Numer kolumny wzgledem ktorej odbedzie sie sortowanie[<" << k<< "]: ";
-                cin >> numCol;
-                przydzielPamiec2D(tab, w, k);
-                wypelnijTablice2D(tab, w, k, a, b);
-                cout << "Przed:" << endl;
-                wyswietl2D(tab, w, k);
-                sortowanieBabelkowe2D(tab, w, k, mode, numCol);
-                cout << "Po:" << endl;
-                wyswietl2D(tab, w, k);
-                usunTablice2D(tab, w);
-                break;
-            }
-            default :
-                cout << "Blad!\n Nie prawidlowa opcja" << endl;
-                break;
+        case 1:
+        {
+            int *tab = nullptr;
+            int n, a, b, mode = 0;
+            cout << "Podaj rozmiar tablicy jednowymiarowej: ";
+            cin >> n;
+            cout << "Podaj przedzial <a,b>: ";
+            cin >> a >> b;
+            cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
+            cin >> mode;
+            przydzielPamiec1D(tab, n);
+            wypelnijTablice1D(tab, n, a, b);
+            cout << "Przed: ";
+            wyswietl1D(tab, n);
+            sortowanieBabelkowe(tab, n, mode);
+            cout << "Po: ";
+            wyswietl1D(tab, n);
+            usunTablice1D(tab);
+            break;
+        }
+        case 2:
+        {
+            int *tab = nullptr;
+            int n, a, b, mode = 0;
+            cout << "Podaj rozmiar tablicy jednowymiarowej: ";
+            cin >> n;
+            cout << "Podaj przedzial <a,b>: ";
+            cin >> a >> b;
+            cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
+            cin >> mode;
+            przydzielPamiec1D(tab, n);
+            wypelnijTablice1D(tab, n, a, b);
+            cout << "Przed: ";
+            wyswietl1D(tab, n);
+            sortowaniePrzezWybor(tab, n, mode);
+            cout << "Po: ";
+            wyswietl1D(tab, n);
+            usunTablice1D(tab);
+            break;
+        }
+        case 3:
+        {
+            int *tab = nullptr;
+            int n, a, b, mode = 0;
+            cout << "Podaj rozmiar tablicy jednowymiarowej: ";
+            cin >> n;
+            cout << "Podaj przedzial <a,b>: ";
+            cin >> a >> b;
+            cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
+            cin >> mode;
+            przydzielPamiec1D(tab, n);
+            wypelnijTablice1D(tab, n, a, b);
+            cout << "Przed: ";
+            wyswietl1D(tab, n);
+            sortowaniePrzezWstawianie(tab, n, mode);
+            cout << "Po: ";
+            wyswietl1D(tab, n);
+            usunTablice1D(tab);
+            break;
+        }
+        case 4:
+        {
+            int** tab = nullptr;
+            int w, k, a, b, mode, numCol;
+            cout << "Podaj rozmiar tablicy dwuwymiarowej: ";
+            cin >> w >> k;
+            cout << "Podaj przedzial <a,b>: ";
+            cin >> a >> b;
+            cout << "Tryb sortowania [1)malejco 2)rosnaco]: ";
+            cin >> mode;
+            cout << "Numer kolumny wzgledem ktorej odbedzie sie sortowanie[<" << k<< "]: ";
+            cin >> numCol;
+            przydzielPamiec2D(tab, w, k);
+            wypelnijTablice2D(tab, w, k, a, b);
+            cout << "Przed:" << endl;
+            wyswietl2D(tab, w, k);
+            sortowanieBabelkowe2D(tab, w, k, mode, numCol);
+            cout << "Po:" << endl;
+            wyswietl2D(tab, w, k);
+            usunTablice2D(tab, w);
+            break;
+        }
+        default :
+            cout << "Blad!\n Nie prawidlowa opcja" << endl;
+            break;
         }
     }
 

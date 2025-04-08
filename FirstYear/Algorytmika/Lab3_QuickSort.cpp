@@ -7,7 +7,8 @@
 #include <utility>
 using namespace std;
 
-struct TStudent {
+struct TStudent
+{
     string name;
     string surname;
     int punkty;
