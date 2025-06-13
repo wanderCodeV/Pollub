@@ -4,38 +4,47 @@
 
 using namespace std;
 
-struct ElemList {
+struct ElemList
+{
     ElemList* next;
     ElemList* prev;
     int data;
 
-    ElemList(int elem) {
+    ElemList(int elem)
+    {
         next = nullptr;
         prev = nullptr;
         data = elem;
     }
 };
 
-struct DoubleList {
+struct DoubleList
+{
     ElemList* head;
     ElemList* tail;
     int cnt;
 
-    DoubleList() {
+    DoubleList()
+    {
         head = tail = nullptr;
         cnt = 0;
     }
 };
 
-bool isEmpty(DoubleList myLista) {
+bool isEmpty(DoubleList& myLista)
+{
     return myLista.head == nullptr;
 }
 
-void add_to_back(DoubleList& myLista, int elem) {
+void add_to_back(DoubleList& myLista, int elem)
+{
     ElemList* newElem = new ElemList(elem);
-    if (isEmpty(myLista)) {
+    if (isEmpty(myLista))
+    {
         myLista.head = myLista.tail = newElem;
-    } else {
+    }
+    else
+    {
         newElem->prev = myLista.tail;
         myLista.tail->next = newElem;
         myLista.tail = newElem;
@@ -43,11 +52,15 @@ void add_to_back(DoubleList& myLista, int elem) {
     myLista.cnt++;
 }
 
-void add_to_front(DoubleList& myLista, int elem) {
+void add_to_front(DoubleList& myLista, int elem)
+{
     ElemList* newElem = new ElemList(elem);
-    if (isEmpty(myLista)) {
+    if (isEmpty(myLista))
+    {
         myLista.head = myLista.tail = newElem;
-    } else {
+    }
+    else
+    {
         newElem->next = myLista.head;
         myLista.head->prev = newElem;
         myLista.head = newElem;
@@ -55,33 +68,54 @@ void add_to_front(DoubleList& myLista, int elem) {
     myLista.cnt++;
 }
 
-void add_to_position(DoubleList& myLista, int elem, int pos) {
+void add_to_position(DoubleList& myLista, int elem, int pos)
+{
     if (pos < 1 || pos > myLista.cnt + 1)
-        cout << "Bledna pozycja\n";
-    else if (pos == 1)
+    {
+        cout << "Blad: Pozycja musi byc z zakresu 1 do " << myLista.cnt + 1 << ".\n";
+        return;
+    }
+
+    if (pos == 1)
+    {
         add_to_front(myLista, elem);
+    }
     else if (pos == myLista.cnt + 1)
+    {
         add_to_back(myLista, elem);
-    else {
+    }
+    else
+    {
         ElemList* newElem = new ElemList(elem);
         ElemList* current = myLista.head;
         for (int i = 1; i < pos - 1; i++)
+        {
             current = current->next;
+        }
+
         newElem->next = current->next;
         newElem->prev = current;
         current->next->prev = newElem;
         current->next = newElem;
+
         myLista.cnt++;
     }
 }
 
-void remove_from_back(DoubleList& myLista) {
+void remove_from_back(DoubleList& myLista)
+{
     if (isEmpty(myLista))
-        cout << "Lista jest pusta.\n";
-    else if (myLista.head == myLista.tail) {
+    {
+        return;
+    }
+
+    if (myLista.head == myLista.tail)
+    {
         delete myLista.head;
         myLista.head = myLista.tail = nullptr;
-    } else {
+    }
+    else
+    {
         ElemList* toDelete = myLista.tail;
         myLista.tail = myLista.tail->prev;
         myLista.tail->next = nullptr;
@@ -90,34 +124,59 @@ void remove_from_back(DoubleList& myLista) {
     myLista.cnt--;
 }
 
-void remove_from_front(DoubleList& myLista) {
-    if (isEmpty(myLista)) {
-        cout << "Lista jest pusta.\n";
+void remove_from_front(DoubleList& myLista)
+{
+    if (isEmpty(myLista))
+    {
         return;
     }
+
     ElemList* temp = myLista.head;
     myLista.head = myLista.head->next;
+
     if (myLista.head)
+    {
         myLista.head->prev = nullptr;
+    }
     else
+    {
         myLista.tail = nullptr;
+    }
+
     delete temp;
     myLista.cnt--;
 }
 
-void remove_at_position(DoubleList& myLista, int pos) {
+void remove_at_position(DoubleList& myLista, int pos)
+{
     if (isEmpty(myLista))
-        cout << "Lista pusta\n";
-    else if (pos < 1 || pos > myLista.cnt)
-        cout << "Bledna pozycja\n";
-    else if (pos == 1)
+    {
+        cout << "Lista jest pusta.\n";
+        return;
+    }
+
+    if (pos < 1 || pos > myLista.cnt)
+    {
+        cout << "Blad: Pozycja musi byc z zakresu 1 do " << myLista.cnt << ".\n";
+        return;
+    }
+
+    if (pos == 1)
+    {
         remove_from_front(myLista);
+    }
     else if (pos == myLista.cnt)
+    {
         remove_from_back(myLista);
-    else {
+    }
+    else
+    {
         ElemList* current = myLista.head;
         for (int i = 1; i < pos; i++)
+        {
             current = current->next;
+        }
+
         current->prev->next = current->next;
         current->next->prev = current->prev;
         delete current;
@@ -125,13 +184,18 @@ void remove_at_position(DoubleList& myLista, int pos) {
     }
 }
 
-void show_list_forward(DoubleList& myLista) {
+void show_list_forward(DoubleList& myLista)
+{
     if (isEmpty(myLista))
-        cout << "Lista pusta\n";
-    else {
+    {
+        cout << "Lista jest pusta.\n";
+    }
+    else
+    {
         ElemList* current = myLista.head;
         cout << "Lista od poczatku: ";
-        while (current) {
+        while (current)
+        {
             cout << current->data << " ";
             current = current->next;
         }
@@ -139,13 +203,18 @@ void show_list_forward(DoubleList& myLista) {
     }
 }
 
-void show_list_backward(DoubleList& myLista) {
+void show_list_backward(DoubleList& myLista)
+{
     if (isEmpty(myLista))
-        cout << "Lista pusta\n";
-    else {
+    {
+        cout << "Lista jest pusta.\n";
+    }
+    else
+    {
         ElemList* current = myLista.tail;
         cout << "Lista od konca: ";
-        while (current) {
+        while (current)
+        {
             cout << current->data << " ";
             current = current->prev;
         }
@@ -153,33 +222,45 @@ void show_list_backward(DoubleList& myLista) {
     }
 }
 
-void find_min(DoubleList& myLista) {
+void find_min(DoubleList& myLista)
+{
     if (isEmpty(myLista))
+    {
         cout << "Lista jest pusta.\n";
-    else {
-        int minVal = myLista.head->data;
-        int minPos = 1;
-        int i = 1;
-        ElemList* current = myLista.head;
-        while (current) {
-            if (current->data < minVal) {
-                minVal = current->data;
-                minPos = i;
-            }
-            current = current->next;
-            i++;
-        }
-        cout << "Minimalna wartosc: " << minVal << ", na pozycji: " << minPos << endl;
+        return;
     }
+
+    int minVal = myLista.head->data;
+    int minPos = 1;
+    int i = 1;
+    ElemList* current = myLista.head;
+
+    while (current)
+    {
+        if (current->data < minVal)
+        {
+            minVal = current->data;
+            minPos = i;
+        }
+        current = current->next;
+        i++;
+    }
+
+    cout << "Minimalna wartosc: " << minVal << ", na pozycji: " << minPos << ".\n";
 }
 
-void clear_list(DoubleList& myLista) {
+void clear_list(DoubleList& myLista)
+{
     while (!isEmpty(myLista))
+    {
         remove_from_front(myLista);
+    }
+
     cout << "Lista zostala wyczyszczona.\n";
 }
 
-int main() {
+int main()
+{
     srand(time(NULL));
     DoubleList myList;
     int choice;
@@ -198,58 +279,83 @@ int main() {
     cout << "11. Usun cala liste\n";
     cout << "12. Wyjscie\n";
 
-    do {
-        cout << "Podaj opcje: ";
+    do
+    {
+        cout << "\nPodaj opcje: ";
         cin >> choice;
-        switch (choice) {
+
+        switch (choice)
+        {
             case 1:
                 cout << (isEmpty(myList) ? "Lista jest pusta.\n" : "Lista nie jest pusta.\n");
                 break;
+
             case 2:
-                add_to_back(myList, rand() % 50 + 1);
+            {
+                int val = rand() % 50 + 1;
+                add_to_back(myList, val);
                 break;
+            }
+
             case 3:
-                add_to_front(myList, rand() % 50 + 1);
+            {
+                int val = rand() % 50 + 1;
+                add_to_front(myList, val);
                 break;
-            case 4: {
+            }
+
+            case 4:
+            {
                 int pos;
                 cout << "Podaj pozycje (1 - " << myList.cnt + 1 << "): ";
                 cin >> pos;
-                add_to_position(myList, rand() % 50 + 1, pos);
+                int val = rand() % 50 + 1;
+                add_to_position(myList, val, pos);
                 break;
             }
+
             case 5:
                 remove_from_back(myList);
                 break;
+
             case 6:
                 remove_from_front(myList);
                 break;
-            case 7: {
+
+            case 7:
+            {
                 int pos;
                 cout << "Podaj pozycje (1 - " << myList.cnt << "): ";
                 cin >> pos;
                 remove_at_position(myList, pos);
                 break;
             }
+
             case 8:
                 show_list_forward(myList);
                 break;
+
             case 9:
                 show_list_backward(myList);
                 break;
+
             case 10:
                 find_min(myList);
                 break;
+
             case 11:
                 clear_list(myList);
                 break;
+
             case 12:
                 cout << "Koniec programu.\n";
                 break;
+
             default:
                 cout << "Nieprawidlowa opcja.\n";
         }
-    } while (choice != 12);
+    }
+    while (choice != 12);
 
     return 0;
 }
