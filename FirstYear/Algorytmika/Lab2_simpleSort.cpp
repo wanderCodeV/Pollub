@@ -107,6 +107,7 @@ void sortowaniePrzezWstawianie(int* tab, int n, int tryb)
             j++;
         }
         tab[j] = temp;
+        wyswietl1D(tab, n);
     }
 
 }
