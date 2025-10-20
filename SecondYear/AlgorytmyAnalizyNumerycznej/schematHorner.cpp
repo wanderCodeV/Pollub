@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip> 
 
 using namespace std;
 
@@ -15,10 +16,15 @@ void HornerU(int power, int point, vector<int> &coeff)
 {
     for (int i = 0; i < power; i++)
     {
+        for(int k = 0; k <= power - i; k++)
+            cout << "------";
+        cout << "\n" << setw(4) << coeff[0] << " |";
         for (int k = 1; k <= power - i; k++)
         {
             coeff[k] += coeff[k - 1] * point;
+            cout << setw(4) << coeff[k] << " |";
         }
+        cout << endl;
     }        
 }
 
@@ -39,14 +45,13 @@ int main()
     }
     cout << "Podaj punkt, w ktorym liczona bedzie wartosc wielomianu: ";
     cin >> point;
-
+    HornerU(power, point, coeff);
     cout << "----------------------------------------------------------\n";
     cout << "Wartosc podanego wielomianu w punkcie p = " << point << " wynosi:\n";
-    HornerU(power, point, coeff);
     cout << coeff[power] << endl;
     // cout << HornerMethod(power, point, coeff) << endl;
     cout << "----------------------------------------------------------\n";
-    cout << "Wartosc pochodnych wielomianu w punkciep = " << point << " wynosi:\n";
+    cout << "Wartosc pochodnych wielomianu w punkcie p = " << point << " wynosi:\n";
     
     int fact = 1;
     for(int i = 1; i <= power; i++)
