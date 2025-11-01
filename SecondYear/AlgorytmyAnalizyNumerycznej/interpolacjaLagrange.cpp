@@ -9,8 +9,12 @@ typedef struct {
 
 void input_data(vector<XF> &func, int &n, double &p)
 {
-    cout << "Podaj liczbe wezlow: ";
-    cin >> n;
+    cout << "Podaj liczbe wezlow (n>=1): ";
+    do
+    {
+        cin >> n;
+    } while(n < 1);
+        
 
     double xi, fi;
     for(int i = 0; i < n; i++)
@@ -26,16 +30,11 @@ void input_data(vector<XF> &func, int &n, double &p)
     cin >> p;
 }
 
-bool cmp(XF a, XF b)
-{
-    return a.x < b.x;
-}
 
 bool check_interpolacja(vector<XF> &func, int &n)
 {
-    sort(func.begin(), func.end(), cmp);
     for(int i = 1; i < n; i++)
-        if(func[i].x == func[i-1].x)
+        if(func[i].x <= func[i-1].x)
             return false;
     return true; 
 }
@@ -133,7 +132,8 @@ int main()
             cout << "Punkt nie nalezy do przedzialu [" << func[0].x << ", " <<  func[n-1].x  << "]" << endl;
         else
         {
-            cout << "Przyblizona wartosc funkcji w punkcie (p = " << p << ") = " << lagrange_interpolation(func, n, p) << endl;
+             cout << "Punkt nalezy do przedzialu [" << func[0].x << ", " <<  func[n-1].x  << "]" << endl;
+            cout << "WYNIK = " << lagrange_interpolation(func, n, p) << endl;
             show_lagrange(func, n);
         }
         
