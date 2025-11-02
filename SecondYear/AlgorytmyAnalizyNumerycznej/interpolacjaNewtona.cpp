@@ -31,32 +31,38 @@ void input_data(vector<XF> &func, int &n, double &p)
 }
 
 
-double newton_interpolation(vector<XF> &func,  int n, double p)
+vector<double> newton_interpolation(vector<XF> &func,  int n)
 {
     vector<double> il_roz;
 
     for(int i = 0; i < n ; i++)
     {
         il_roz.push_back(func[i].f);
-        cout << setw(5) << il_roz[i] << " ";
+        //cout << setw(5) << il_roz[i] << " ";
     }
-    cout << "| f[i]" << endl;    
+    //cout << "| f[i]" << endl;    
 
     for(int i = 1; i < n; i++)
     {
         for(int j = n - 1; j >= i; j--)
             il_roz[j] = (il_roz[j] - il_roz[j-1]) / (func[j].x - func[j - i].x);
 
-        for(int j = 0; j < n; j++)
+        /*for(int j = 0; j < n; j++)
         {
             if(j < i)
                 cout << "      ";
             else
                 cout << setw(5) << il_roz[j] << " ";
         }
-         cout << "| f[x_i ... x_i+" << i << "]" << endl;    
+         cout << "| f[x_i ... x_i+" << i << "]" << endl;    */
     }
     
+    return il_roz;
+}
+
+double calculate_newton_interpolation(vector<XF> &func,  int n, double p)
+{
+    vector<double> il_roz = newton_interpolation(func, n);
     double result = 0;
     for(int i = 0; i < n; i++)
     {
@@ -69,8 +75,57 @@ double newton_interpolation(vector<XF> &func,  int n, double p)
     }
     return result;
     
+
 }
 
+vector<double> multiplyPolynomials(const vector<double>& A, const vector<double>& B) {
+    vector<double> result(A.size() + B.size() - 1, 0.0);
+    for (size_t i = 0; i < A.size(); i++)
+        for (size_t j = 0; j < B.size(); j++)
+            result[i + j] += A[i] * B[j];
+    return result;
+}
+void print_welomian(vector<double> &result)
+{
+    bool first = true;
+    for (int i = result.size() - 1; i >= 0; i--) 
+    {
+        if (fabs(result[i]) < 1e-9) continue;
+
+        if (!first) 
+            cout << (result[i] >= 0 ? " + " : " - ");
+        else if (result[i] < 0) 
+            cout << "-";
+
+        first = false;
+
+        double coef = fabs(result[i]);
+        if (!(coef == 1 && i > 0)) cout << coef;
+        if (i > 0) cout << "x";
+        if (i > 1) cout << "^" << i;
+    }
+}
+
+void show_wielomian(vector<XF> &func,  int n)
+{
+    vector<double> il_roz = newton_interpolation(func, n);
+    vector<double> result(n, 0.0);
+    result[0] = il_roz[0];
+    for(int i = 1; i < n; i++)
+    {
+        vector<double> Li = {il_roz[i]};
+        for(int j = 0; j < i; j++)
+        {
+            vector<double> term = { -func[j].x, 1 };
+            Li = multiplyPolynomials(Li, term);
+        }
+        for (int k = 0; k < Li.size(); k++) 
+        {
+            result[k] += Li[k];
+        }
+    }
+    print_welomian(result);
+}
 bool check_interpolacja(vector<XF> &func, int &n)
 {
     for(int i = 1; i < n; i++)
@@ -93,8 +148,9 @@ int main()
         else
         {
             cout << "Punkt nalezy do przedzialu [" << func[0].x << ", " <<  func[n-1].x  << "]" << endl;
-            double w_p = newton_interpolation(func, n, p);
+            double w_p = calculate_newton_interpolation(func, n, p);
             cout << "WYNIK = " << w_p << endl;
+            show_wielomian(func, n);
         }  
     }
     else
