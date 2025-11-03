@@ -6,24 +6,24 @@ public class Figura {
     protected double obwod;
     private Color kolor;
 
-    public Figura()
-    {
+    public Figura() {
         this.pole = 0;
         this.obwod = 0;
         this.kolor = Color.BLACK;
     }
-    public Figura (Color kolor, double pole, double obwod)
-    {
+
+    public Figura(Color kolor, double pole, double obwod) {
         this.kolor = kolor;
         this.pole = pole;
         this.obwod = obwod;
     }
+
     protected void rysuj() {
-        System.out.println("Rysuję figurę...");
+        System.out.println("Rysuje figure...");
     }
 
     protected void usun() {
-        System.out.println("Usuwam figurę...");
+        System.out.println("Usuwam figure...");
     }
 
     protected void przesun() {
@@ -33,12 +33,15 @@ public class Figura {
     protected String podajParametry() {
         return "Pole: " + pole + ", Obwód: " + obwod + ", Kolor: " + kolor;
     }
+
     public double getPole() {
         return pole;
     }
+
     public void setPole(double pole) {
         this.pole = pole;
     }
+
     public double getObwod() {
         return obwod;
     }

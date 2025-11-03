@@ -1,15 +1,45 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.awt.Color;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+//        System.out.println("=== TEST ELIPSA ===");
+//        Elipsa e = new Elipsa(6, 4, Color.RED);
+//        e.obliczPole();
+//        e.obliczObwod();
+//        e.rysuj();
+//        System.out.println(e.podajParametry());
+
+        System.out.println("\n=== TEST OKRĄG ===");
+        Okrag o = new Okrag(5);
+        o.obliczPole();
+        o.obliczObwod();
+        o.rysuj();
+        System.out.println("Pole okraga: " + o.getPole());
+        System.out.println(o.podajParametry());
+
+        System.out.println("\n=== TEST TRÓJKĄT ===");
+        Trojkat t = new Trojkat(6, 4);
+        t.obliczPole();
+        t.obliczObwod();
+        t.rysuj();
+        System.out.println("Pole trojkata: " + t.getPole());
+        System.out.println(t.podajParametry());
+
+        System.out.println("\n=== TEST PROSTOKĄT ===");
+        Prostokat p = new Prostokat(8, 3);
+        p.obliczPole();
+        p.obliczObwod();
+        p.rysuj();
+        System.out.println("Pole prostokata: " + p.getPole());
+        System.out.println(p.podajParametry());
+
+        System.out.println("\n=== TEST KWADRAT ===");
+        Kwadrat k = new Kwadrat(5);
+        k.obliczPole();
+        k.obliczObwod();
+        k.rysuj();
+        System.out.println("Pole kwadrata: " + k.getPole());
+        System.out.println(k.podajParametry());
     }
 }
