@@ -38,23 +38,23 @@ vector<double> newton_interpolation(vector<XF> &func,  int n)
     for(int i = 0; i < n ; i++)
     {
         il_roz.push_back(func[i].f);
-        //cout << setw(5) << il_roz[i] << " ";
+        cout << setw(5) << il_roz[i] << " ";
     }
-    //cout << "| f[i]" << endl;    
+    cout << "| f[i]" << endl;    
 
     for(int i = 1; i < n; i++)
     {
         for(int j = n - 1; j >= i; j--)
             il_roz[j] = (il_roz[j] - il_roz[j-1]) / (func[j].x - func[j - i].x);
 
-        /*for(int j = 0; j < n; j++)
+        for(int j = 0; j < n; j++)
         {
             if(j < i)
                 cout << "      ";
             else
                 cout << setw(5) << il_roz[j] << " ";
         }
-         cout << "| f[x_i ... x_i+" << i << "]" << endl;    */
+         cout << "| f[x_i ... x_i+" << i << "]" << endl;   
     }
     
     return il_roz;
