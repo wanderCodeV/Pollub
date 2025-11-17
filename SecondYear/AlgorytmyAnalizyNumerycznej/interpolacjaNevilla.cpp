@@ -63,6 +63,23 @@ double neville_interpolation(vector<XF> &func,  int n, double p)
     return p_ij[0];
 }
 
+double obliczenie_Neville(double wartosc_w[], double wartosc_f[], int n, double punkt) {
+    double ir[n];
+    int i;
+    for (i=0; i < n; i++) {
+        ir[i] = wartosc_f[i];
+    }
+    int k=1;
+    while (k < n) {
+        i = 0;
+        while (i < n - k) {
+            ir[i] = (((punkt - wartosc_w[i])*ir[i+1]) - ((punkt - wartosc_w[i+])*ir[i])) / (wartosc_w[k+i] - wartosc_w[i]);
+            i++;
+        }
+        k++;
+    }
+    return ir[0];
+}
 bool check_interpolacja(vector<XF> &func, int &n)
 {
     for(int i = 1; i < n; i++)
