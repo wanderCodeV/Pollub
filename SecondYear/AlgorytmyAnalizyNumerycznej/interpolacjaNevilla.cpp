@@ -65,6 +65,7 @@ double neville_interpolation(vector<XF> &func,  int n, double p)
 
 bool check_interpolacja(vector<XF> &func, int &n)
 {
+    sort(func.begin(), func.end(), cmp);
     for(int i = 1; i < n; i++)
         if(func[i].x <= func[i-1].x)
             return false;
