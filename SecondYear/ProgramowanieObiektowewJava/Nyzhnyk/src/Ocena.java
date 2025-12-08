@@ -1,0 +1,8 @@
+public enum Ocena {
+    NIEDOSTATECZNY,
+    DOSTATECZNY,
+    DOSTATECZNY_PLUS,
+    DOBRY,
+    DOBRY_PLUS,
+    BARDZO_DOBRY
+}
