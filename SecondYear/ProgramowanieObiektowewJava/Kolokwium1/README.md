@@ -17,9 +17,11 @@
    - `nrIndeksu` - `int`
    - `oceny` - `Object[][]`
    - Konstruktor wykorzystujący klasę **Osoba**, który inicjalizuje (tylko) tablicę ocen o rozmiarze 5x2. Tablica po inicjalizacji ma zawierać wartości domyślne `null` oraz `NIEDOSTATECZNY`. Przyszłe wykorzystanie tablicy zostało pokazane w tabeli 1:
+
 | Matematyka     | Elektrotechnika | Metrologia  | Algorytmy | Programowanie |
 |----------------|-----------------|-------------|-----------|---------------|
 | NIEDOSTATECZNY | DOSTATECZNY     | DOSTATECZNY | DOBRY     | DOBRY_PLUS    |
+
 przykladowo: odwolanie `oceny[2][0]` zwroci lancuch znakow `Metrologia`, a `oceny[0][1]` zwroci wartosc wyliczeniowa `NIEDOSTATECZNY`
 5. Utworz interfejs **IStudent** zawierajacy metody:
    - `zdajEgzamin(int nrEgzaminu, String przedmiot)` - metoda nic nie zwraca
