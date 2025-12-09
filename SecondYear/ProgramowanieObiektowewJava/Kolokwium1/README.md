@@ -17,26 +17,27 @@
    - nrIndeksu - `int`
    - oceny - `Object [][]`.
    - Konstruktor wykorzystujacy klase Osoba, ktory inicjalizuje (tylko) tablice ocen o rozmiare 5x2 (tablica po inicjalizacji ma zawierac wartosci domyslne `null` oraz `NIEDOSTATECZNY`). Przyszle wykorzystanie tablicy zostalo pokazane w tabeli 1:
-    | Matematyka     | Elektrotechnika | Metrologia  | Algorytmy | Programowanie
-    | NIEDOSTATECZNY | DOSTATECZNY     | DOSTATECZNY | DOBRY     | DOBRY_PLUS
-    przykladowo: odwolanie oceny[2][0] zwroci lancuch znakow Metrologia, a oceny [0][1] zwroci wartosc wyliczeniowa NIEDOSTATECZNY
-5. Utworz interfejs IStudent zawierajacy metody:
+    | Matematyka     | Elektrotechnika | Metrologia  | Algorytmy | Programowanie |
+    |----------------|-----------------|-------------|-----------|---------------|
+    | NIEDOSTATECZNY | DOSTATECZNY     | DOSTATECZNY | DOBRY     | DOBRY_PLUS    |
+    przykladowo: odwolanie `oceny[2][0]` zwroci lancuch znakow Metrologia, a `oceny[0][1]` zwroci wartosc wyliczeniowa NIEDOSTATECZNY
+5. Utworz interfejs __IStudent__ zawierajacy metody:
    - `zdajEgzamin(int nrEgzaminu, String przedmiot)` - metoda nic nie zwraca
    - `pokazIndeks(int NrEgzaminu)` - *metoda domyslna*,zwraca tablice klasy Object.
    - `obliczSrednia()` - metoda zwraca wartosc zmiennoprzecinkowa
    - `czyStypendium()` - metoda zwraca prawde lub falsz
-6. Zaimplementuj interfejs IStudent w klasie Student:
+6. Zaimplementuj interfejs **IStudent** w klasie Student:
    - `zdajEgzamin(int nrEgzaminu, String przedmiot)` - metoda ma wylosowac jedna z ocen(typ wyliczeniowy, zad 3) i ustawic ja dla danego przedmiotu, nrEgzaminu oznacza kolumne z Tabeli 1. Przykładowo ponizsze polecenie powinno uzupelnic pierwsza kolumne o losowa ocene z przedmiotu Matematyka: studentX.zdajEgzamin(0, "Matematyka");
    - `pokazIndeks(int nrEgzaminu)` - metoda ma zwrocic tablice zawierajaca nazwe przedmiotu i ocene z egzaminu (kolumna z tabeli 1). w przypadku gdy ocena nie jest wstawiona(null) metoda ma zwrocic tablice: `["Brak_przedmiotu", NIEDOSTATECZNY]`.
    - `obliczSrednia()` - metoda zwraca srednia arytmetyczna z ocen o ile wszystkie są wystawione. Jesli nie wszystkie oceny sa wystawione metoda ma rzucic wyjątek klasy IllegalStateException. Pamiętaj:
      - o odpowiednim wywolaniu metody
-     - ze oceny są typem wyliczeniowym. Wykorzystaj switch-case do zmapowania na wartosci liczbowe
+     - ze oceny są typem wyliczeniowym. Wykorzystaj `switch-case` do zmapowania na wartosci liczbowe
    - `czyStypendium()` - metoda ma zwrocic prawde, jesli wszystkie oceny są wystawione i srednia ocen jest wieksza niz `4,75`. w przeciwnym wypadku metoda zwraca false. wykorzystaj metode `obliczSrednia()`.
 7. Utworz metode main() w klasie Main(psvm + Tab) zawierajaca:
    - Liste obiektow klasy Osoba - `oLista`.
    - Uzupelnienie wartosci(imie,nazwisko,wiek) i wyswietlenie listy osob (min. 4 obiekty), wykorzystaj kontruktor, metody dostepowe oraz petle.
    - Liste obiektow klasy Student - `sLista`.
-   - Analogiczne uzupelnienie wartosci dla listy sLista (konstuktor, petla, `zdajEgzamin()`), min. 4 obiekty. Dodatkowo wypisane maja byc wszystkie dane studentow ktorzy otrzymają stypendium - metoda czyStypendium() zwroci prawde.
+   - Analogiczne uzupelnienie wartosci dla listy sLista (konstuktor, petla, `zdajEgzamin()`), min. 4 obiekty. Dodatkowo wypisane maja byc wszystkie dane studentow ktorzy otrzymają stypendium - metoda `czyStypendium()` zwroci prawde.
    - usuniecie z kazdej listy jednego obiektu o:
      - najnizszym wieku - `oLista`.
      - najnizszej sredniej - `sLista`.
