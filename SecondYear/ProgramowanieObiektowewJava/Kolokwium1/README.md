@@ -17,10 +17,10 @@
    - nrIndeksu - `int`
    - oceny - `Object [][]`.
    - Konstruktor wykorzystujacy klase Osoba, ktory inicjalizuje (tylko) tablice ocen o rozmiare 5x2 (tablica po inicjalizacji ma zawierac wartosci domyslne `null` oraz `NIEDOSTATECZNY`). Przyszle wykorzystanie tablicy zostalo pokazane w tabeli 1:
-    | Matematyka     | Elektrotechnika | Metrologia  | Algorytmy | Programowanie |
-    |----------------|-----------------|-------------|-----------|---------------|
-    | NIEDOSTATECZNY | DOSTATECZNY     | DOSTATECZNY | DOBRY     | DOBRY_PLUS    |
-    przykladowo: odwolanie `oceny[2][0]` zwroci lancuch znakow Metrologia, a `oceny[0][1]` zwroci wartosc wyliczeniowa NIEDOSTATECZNY
+   | Matematyka     | Elektrotechnika | Metrologia  | Algorytmy | Programowanie |
+   |----------------|-----------------|-------------|-----------|---------------|
+   | NIEDOSTATECZNY | DOSTATECZNY     | DOSTATECZNY | DOBRY     | DOBRY_PLUS    |
+   przykladowo: odwolanie `oceny[2][0]` zwroci lancuch znakow Metrologia, a `oceny[0][1]` zwroci wartosc wyliczeniowa NIEDOSTATECZNY
 5. Utworz interfejs __IStudent__ zawierajacy metody:
    - `zdajEgzamin(int nrEgzaminu, String przedmiot)` - metoda nic nie zwraca
    - `pokazIndeks(int NrEgzaminu)` - *metoda domyslna*,zwraca tablice klasy Object.
