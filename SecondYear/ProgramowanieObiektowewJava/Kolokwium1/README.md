@@ -1,10 +1,12 @@
 # **KOLOKWIUM 1**
-1. utworz typ wyliczeniowy(enum) Plec zawierajacy wartosci KOBIETA i MEZCZYZNA.
-2. Utworz klase Osoba zawierajaca skladowe:
-   _ prywatne pola:
-      _ imie,nazwisko
-      _ wiek
-      _ plec - Plec(typ wyliczeniowy utworzony w zadaniu 1.)
+1. Utwórz typ wyliczeniowy (`enum`) **Plec**, zawierający wartości:
+   - `KOBIETA`
+   - `MEZCZYZNA`
+2. Utworz klase **Osoba** zawierajaca skladowe:
+   - prywatne pola:
+     - imie,nazwisko
+     - wiek
+     - plec - typu 'Plec' (typ wyliczeniowy utworzony w zadaniu 1.)
     	b. konstruktor z parametrem typu Plec ustawiajacy to pole w klasie.
     	c. publiczne metody dostepowe:
         	- zapytajOimie(), zapytajOnazwisko, zapytajOwiek() - metody maja zwrocic wartosc odpowiedniego pola
