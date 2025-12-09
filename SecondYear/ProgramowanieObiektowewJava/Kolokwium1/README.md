@@ -13,15 +13,15 @@
      - `wprowadzImie()`, `wprowadzNazwisko()`, `wprowadzWiek()` - metody maja zapytac uzytkownika o wartosc i ustawic je jako pole danego obiektu. Wprowadzenie wartosci jest mozliwe wylacznie w sytuacji, kiedy pole nie posiada warotsci(null lub 0) 
 3. Utworz typ wyliczeniowy Ocena zawierajacy spis ocen w skali akademickiej tj:
     `NIEDOSTATECZNY, DOSTATECZNY, DOSTATECZNY_PLUS, DOBRY, DOBRY_PLUS, BARDZO_DOBRY`.
-4. Utworz klase Student dziedziczaca po klasie Osoba. zdefiniuj skladowe klasy:
-   - nrIndeksu - `int`
-   - oceny - `Object [][]`.
-   - Konstruktor wykorzystujacy klase Osoba, ktory inicjalizuje (tylko) tablice ocen o rozmiare 5x2 (tablica po inicjalizacji ma zawierac wartosci domyslne `null` oraz `NIEDOSTATECZNY`). Przyszle wykorzystanie tablicy zostalo pokazane w tabeli 1:
-   | Matematyka     | Elektrotechnika | Metrologia  | Algorytmy | Programowanie |
-   |----------------|-----------------|-------------|-----------|---------------|
-   | NIEDOSTATECZNY | DOSTATECZNY     | DOSTATECZNY | DOBRY     | DOBRY_PLUS    |
-   przykladowo: odwolanie `oceny[2][0]` zwroci lancuch znakow Metrologia, a `oceny[0][1]` zwroci wartosc wyliczeniowa NIEDOSTATECZNY
-5. Utworz interfejs __IStudent__ zawierajacy metody:
+4. Utwórz klasę **Student** dziedziczącą po klasie **Osoba**. Zdefiniuj składniki klasy:
+   - `nrIndeksu` - `int`
+   - `oceny` - `Object[][]`
+   - Konstruktor wykorzystujący klasę **Osoba**, który inicjalizuje (tylko) tablicę ocen o rozmiarze 5x2. Tablica po inicjalizacji ma zawierać wartości domyślne `null` oraz `NIEDOSTATECZNY`. Przyszłe wykorzystanie tablicy zostało pokazane w tabeli 1:
+| Matematyka     | Elektrotechnika | Metrologia  | Algorytmy | Programowanie |
+|----------------|-----------------|-------------|-----------|---------------|
+| NIEDOSTATECZNY | DOSTATECZNY     | DOSTATECZNY | DOBRY     | DOBRY_PLUS    |
+przykladowo: odwolanie `oceny[2][0]` zwroci lancuch znakow `Metrologia`, a `oceny[0][1]` zwroci wartosc wyliczeniowa `NIEDOSTATECZNY`
+5. Utworz interfejs **IStudent** zawierajacy metody:
    - `zdajEgzamin(int nrEgzaminu, String przedmiot)` - metoda nic nie zwraca
    - `pokazIndeks(int NrEgzaminu)` - *metoda domyslna*,zwraca tablice klasy Object.
    - `obliczSrednia()` - metoda zwraca wartosc zmiennoprzecinkowa
