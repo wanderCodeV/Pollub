@@ -48,12 +48,12 @@ Zdefiniuj w klasach odpowiednio pola prywatne:
 - W klasie Wielokąt:
   - liczba wierzchołków, liczba boków, suma kątów wewnętrznych.
 Dodaj konstruktory, gettery i settery dla każdej z klas – zauważ, że klasa dziedzicząca może wykorzystać konstruktor klasy nadrzędnej. Zwróć uwagę na słowo super – do czego się odnosi? Sprawdź czy masz dostęp do pól klasy bazowej. Dodaj/nadpisz dla każdej klasy metody z klasy bazowej (Alt+Insert → Override Methods). Zwróć uwagę na adnotację oznaczoną symbolem @ oraz ponownie słowo super. Metody mogą zawierać wypisanie informacji np.: ```System.out.println("Trwa rysowanie wielokąta o " + wierzcholki + "wierzchołkach");```
+
 Dodaj metody obliczające:
 - W klasie Elipsa: odległość ognisk od środka elipsy (c):
   `𝑐 = sqrt(𝑎^2 − 𝑏^2)`
 - W klasie Wielokąt: sumę kątów wewnętrznych:
-  𝑠𝑢𝑚𝑎𝐾𝑎𝑡𝑜𝑤 = (𝑛 − 2) ∙ 180°
-  gdzie n jest liczbą boków wielokąta.
+    𝑠𝑢𝑚𝑎𝐾𝑎𝑡𝑜𝑤 = (𝑛 − 2) ∙ 180°, gdzie n jest liczbą boków wielokąta.
 Utwórz nowe klasy dziedziczące:
     Elipsa <- Okrąg
     Wielokąt <- Trójkąt
