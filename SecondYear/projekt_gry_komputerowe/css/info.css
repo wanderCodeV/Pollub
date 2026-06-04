@@ -1,0 +1,51 @@
+﻿
+
+/* zLab2: stylizacja strony informacyjnej z opisami gier i layoutem sekcji (uprzątnięte)
+   Używane klasy: .section-panel--games, .panel-item, .panel-info, .panel-source */
+
+.panel-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.panel-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.panel-item img {
+    width: 45%;
+    max-width: 500px;
+    height: auto;
+}
+
+.panel-info {
+    flex: 1;
+}
+
+.panel-info h2 {
+    color: var(--red);
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.panel-info p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--black);
+    text-align: justify;
+}
+
+@media screen and (max-width: 850px) {
+    .panel-item,
+    .panel-item:nth-child(even) {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .panel-item img {
+        width: 100%;
+    }
+}
+

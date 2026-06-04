@@ -1,0 +1,157 @@
+/* Stylizacja galerii z wykorzystaniem CSS Grid i Box Model */
+.gallery-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 12px;
+}
+
+.filter-btn {
+    border: 2px solid var(--red);
+    color: var(--red);
+    background: transparent;
+    transition: all 0.25s ease;
+    padding: 0.75rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+}
+
+/* zLab3: Budowa zaawansowanego i uporządkowanego układu z wykorzystaniem CSS Grid (Domyślnie 3 kolumny dla Desktopu) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 32px auto;
+    padding: 0 15px;
+    box-sizing: border-box; /* zLab2: Ścisłe wykorzystanie modelu pudełkowego */
+}
+
+/* zLab2: Karta miniatury sformatowana z zachowaniem właściwości Box Model (padding, border, margin) */
+.gallery-card {
+    border: none;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 250px;
+}
+
+.gallery-card-body {
+    padding: 18px;
+    flex-grow: 1;
+    background: var(--white);
+}
+
+
+/* Stylizacja Modala */
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 1050;
+}
+
+.gallery-modal.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.gallery-modal-content {
+    max-width: 940px;
+    width: 100%;
+    background: var(--dark-blue);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+    position: relative;
+}
+
+.gallery-modal-content img {
+    width: 100%;
+    max-height: 520px;
+}
+
+.gallery-modal-body {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    color: var(--light);
+}
+
+.gallery-modal-body a{
+    color: inherit;
+}
+.gallery-modal-close {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    width: 42px;
+    height: 42px;
+    border: 2px solid rgba(255,255,255,0.85);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--white);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.gallery-modal-close:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.08);
+}
+
+/* zLab5: Zastosowanie reguł @media do modyfikacji layoutu w zależności od szerokości ekranu urządzenia */
+
+/* Średnie ekrany (Tablety) - Zmiana siatki na układ 2-kolumnowy */
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Małe ekrany (Smartfony) - Zmiana siatki na układ 1-kolumnowy */
+@media (max-width: 576px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .gallery-card img {
+        height: 200px;
+    }
+}

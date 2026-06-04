@@ -1,0 +1,273 @@
+/* Ogólny układ dla sekcji informacyjnych i formularzy */
+.section-panel{
+    max-width: var(--content-max-width);
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.section-panel h2{
+    text-align: center;
+}
+
+/* Unified form input class replacing Bootstrap form-control */
+.input-field {
+    padding: 12px;
+    border: 2px solid var(--mid-grey);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Panel styles for info pages */
+.section-panel--games {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.panel-item {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+
+/* Shared image styles applied to gallery, info and review images */
+.gallery-card img,
+.panel-item img,
+.review-slide img,
+.gallery-modal-content img {
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+.panel-info {
+    flex: 1;
+}
+
+.panel-source {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--grey);
+}
+
+.panel-source a {
+    color: inherit;
+}
+
+.panel-source:hover {
+    color: var(--red);
+}
+
+/* Shared media/image defaults used across gallery, info and reviews */
+.shared-media {
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+.section-panel h2 {
+    color: var(--red);
+    margin-top: 0;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.section-panel p {
+    line-height: 1.7;
+    color: var(--black);
+}
+
+.section-panel--intro {
+    max-width: var(--content-max-width);
+}
+
+.section-panel--intro h2 {
+    color: var(--blue);
+}
+
+.section-panel--quiz {
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--black);
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px;
+    border: 2px solid var(--mid-grey);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--blue);
+    outline: none;
+}
+
+.submit-btn,
+.action-btn,
+.quiz-btn {
+    background-color: var(--red);
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.2s;
+}
+
+.action-btn {
+    background-color: var(--blue);
+}
+
+.submit-btn:hover,
+.action-btn:hover,
+.quiz-btn:hover {
+    opacity: 0.9;
+}
+
+.error-msg {
+    color: var(--red);
+    background-color: #fce8e6;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* Booking-related components removed (profile/FAQ moved out) */
+
+.geo-text {
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.quiz-progress {
+    font-size: 14px;
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.quiz-badge {
+    display: inline-block;
+    background-color: var(--light);
+    color: var(--blue);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.quiz-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.answer-btn {
+    background-color: var(--light);
+    border: 2px solid var(--mid-grey);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 16px;
+    color: var(--black);
+    cursor: pointer;
+    text-align: left;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.answer-btn:hover {
+    border-color: var(--blue);
+    transform: translateY(-2px);
+}
+
+.score-text,
+.rank-text {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.rank-text {
+    margin-bottom: 20px;
+}
+
+.rank-highlight {
+    color: var(--red);
+    font-weight: 700;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    padding: 14px 18px;
+    border: 1px solid var(--mid-grey);
+    text-align: left;
+}
+
+.table thead th {
+    background-color: var(--blue);
+    color: #ffffff;
+}
+
+.table-striped tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #f2f4f8;
+}
+
+@media screen and (max-width: 850px) {
+    .answer-btn,
+    .submit-btn,
+    .action-btn,
+    .quiz-btn {
+        padding: 14px 20px;
+    }
+}

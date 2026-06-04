@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Górskie Rozgrywki - Galeria</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Galeria Górskich Motywów</h1>
+        <p>Odkryj najpiękniejsze inspiracje górskie z gier oraz z prawdziwych wypraw.</p>
+    </header>
+
+    <nav class="navbar">
+        <div class="navbar-logo">GÓRY & GRY</div>
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Otwórz menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html">O nas</a></li>
+            <li><a href="info.html">Przewodnik</a></li>
+            <li><a href="reviews.html">Recenzje</a></li>
+            <li><a href="gallery.html" class="active">Galeria</a></li>
+            <li><a href="booking.html">Dołącz do nas</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="section-panel">
+
+            <section class="gallery-controls">
+                <button type="button" class="filter-btn gallery-filter" data-filter="Wiedźmin">Wiedźmin</button>
+                <button type="button" class="filter-btn gallery-filter" data-filter="Skyrim">Skyrim</button>
+                <button type="button" class="filter-btn gallery-filter" data-filter="Celeste">Celeste</button>
+            </section>
+
+            <section class="gallery-section">
+                <div class="gallery-grid"></div>
+            </section>
+
+            <div id="galleryModal" class="gallery-modal" aria-hidden="true">
+                <div class="gallery-modal-content">
+                    <button id="galleryModalClose" class="gallery-modal-close" aria-label="Zamknij galerię">×</button>
+                    <img id="galleryModalImage" src="" alt="Podgląd obrazu">
+                    <div class="gallery-modal-body">
+                        <div>Źródło:</div>
+                        <div id="galleryModalSource" class="gallery-modal-source"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <footer>
+        <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych - Gry komputerowe</p>
+        <p>Autor: Mariia Nyzhnyk</p>
+    </footer>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

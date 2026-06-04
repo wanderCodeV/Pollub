@@ -1,0 +1,117 @@
+﻿/* zLab6: styl recenzji i karuzeli z opisami gier oraz nawigacją między slajdami */
+
+.review-carousel-box {
+    width: 100%;
+    position: relative;
+}
+
+.review-slide {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 10px 60px; 
+}
+
+
+.review-carousel-box.reverse .review-slide {
+    flex-direction: row-reverse;
+}
+
+
+.review-slide img {
+    width: 45%;
+    max-width: 500px;
+    height: 350px; 
+}
+
+
+.review-info {
+    flex: 1;
+}
+
+.review-info p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--black);
+    text-align: justify;
+}
+
+
+
+.carousel-item {
+    display: none;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+
+.review-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--light-blue);
+    border: none;
+    color: var(--light);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.review-nav:hover {
+    background-color: var(--blue);
+}
+
+.review-nav.prev {
+    left: 10px;
+}
+
+.review-nav.next {
+    right: 10px;
+}
+
+.review-nav-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-top: 3px solid currentColor;
+    border-right: 3px solid currentColor;
+}
+
+.review-nav-icon.prev-icon {
+    transform: rotate(-135deg);
+}
+
+.review-nav-icon.next-icon {
+    transform: rotate(45deg);
+}
+
+
+@media screen and (max-width: 850px) {
+    .review-slide,
+    .review-carousel-box.reverse .review-slide {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 20px;
+    }
+    
+    .review-slide img {
+        width: 100%;
+        height: 250px; 
+    }
+    
+    .review-info {
+        text-align: center;
+    }
+
+    .review-nav {
+        width: 40px;
+        height: 40px;
+    }
+}
+

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="pl">
+
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Górskie Rozgrywki - Strona Główna</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- zLab2: strona główna zawierająca opis najważniejszych elementów projektu -->
+</head>
+
+<body>
+
+    <header>
+        <h1>Górskie Rozgrywki</h1>
+        <p>Niezwykłe symbiozy cyfrowego świata gier i majestatycznych szczytów</p>
+    </header>
+
+
+    <nav class="navbar">
+        <!-- zLab2: główna nawigacja między stronami z projektu -->
+        <div class="navbar-logo">
+            GÓRY & GRY
+        </div>
+
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Otwórz menu">
+            <span></span> <span></span> <span></span> </button>
+
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html" class="active">O nas</a></li>
+            <li><a href="info.html">Przewodnik</a></li>
+            <li><a href="reviews.html">Recenzje</a></li>
+            <li><a href="gallery.html">Galeria</a></li>
+            <li><a href="booking.html">Dołącz do nas</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+
+
+    <main>
+        <section class="section-panel section-panel--intro">
+            <h2>Witaj w Górskich Rozgrywkach!</h2>
+            <p>Platforma informacyjna dla miłośników gór i gier komputerowych, którzy pragną połączyć pasję do
+                wspinaczki i pieszych wędrówek z miłością do eksploracji cyfrowych światów.</p>
+        </section>
+
+        <section class="section-panel section-panel--geo">
+            <h2>Odległość od Kwatery Głównej</h2>
+            <p>Siedziba naszego klubu mieści się u podnóża Tatr w Zakopanem. Sprawdź, jak długa droga czeka Cię na
+                najbliższy zlot fizyczny.</p>
+            <button id="geoBtn" class="action-btn">Oblicz dystans do bazy</button>
+            <p id="geoResult" class="geo-text"></p>
+        </section>
+
+        <section class="section-panel section-panel--quiz" id="quiz-container">
+            <div id="start-screen">
+                <h2>Czy jesteś gotów na cyfrową wspinaczkę?</h2>
+                <p>Przed Tobą zestaw pytań dotyczących najsłynniejszych górskich motywów w grach Wiedźmin 3, Skyrim
+                    oraz Celeste. Zdobądź szczyt wiedzy!</p>
+                <button id="start-btn" class="quiz-btn">Rozpocznij Quiz</button>
+                <!-- zLab7: przycisk startu inicjuje interaktywny quiz w JavaScript -->
+            </div>
+        </section>
+    </main>
+
+
+    <footer>
+        <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych - Gry komputerowe</p>
+        <p>Autor: Mariia Nyzhnyk</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+
+</html>
