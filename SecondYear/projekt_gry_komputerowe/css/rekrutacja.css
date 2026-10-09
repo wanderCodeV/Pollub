@@ -1,0 +1,38 @@
+/* zLab3: Układ pól radio i checkbox w formularzu rekrutacyjnym */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.radio-group label,
+.form-group > label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.label-block {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.checkbox-group label {
+    align-items: flex-start;
+    line-height: 1.4;
+}
+
+/* zLab2: Widoczny komunikat walidacji (nadpisanie display:none z style.css) */
+#formError.error-msg:not(:empty) {
+    display: block;
+}
+
+/* zLab5: Media Query dla urządzeń mobilnych */
+@media screen and (max-width: 768px) {
+    .radio-group {
+        flex-direction: column;
+    }
+}

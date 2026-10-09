@@ -1,79 +1,110 @@
-﻿<!DOCTYPE html>
+﻿<!-- Mariia Nyzhnyk 104073, ocena 5-->
 
+<!-- zLab1cz1: Struktura dokumentu HTML5 i sekcja nagłówkowa head -->
+<!DOCTYPE html>
 <html lang="pl">
-
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Górskie Rozgrywki - Strona Główna</title>
+    <!-- zLab2: Link do pliku CSS -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- zLab2: strona główna zawierająca opis najważniejszych elementów projektu -->
 </head>
 
 <body>
 
+    <!-- zLab5: nagłówek z użyciem selektora header -->
     <header>
         <h1>Górskie Rozgrywki</h1>
-        <p>Niezwykłe symbiozy cyfrowego świata gier i majestatycznych szczytów</p>
+        <p>Strona o grach komputerowych z motywami górskimi</p>
     </header>
 
-
+    <!-- zLab5: Pasek menu nawigacyjnego -->
     <nav class="navbar">
-        <!-- zLab2: główna nawigacja między stronami z projektu -->
-        <div class="navbar-logo">
-            GÓRY & GRY
-        </div>
-
+        <!-- zLab3: Kontener logotypu w menu -->
+        <div class="navbar-logo">GÓRY & GRY</div>
         <button class="navbar-toggle" id="navbarToggle" aria-label="Otwórz menu">
-            <span></span> <span></span> <span></span> </button>
-
+            <span></span><span></span><span></span>
+        </button>
         <ul class="navbar-menu" id="navbarMenu">
-            <li><a href="index.html" class="active">O nas</a></li>
+            <li><a href="index.html" class="active">O stronie</a></li>
             <li><a href="info.html">Przewodnik</a></li>
             <li><a href="reviews.html">Recenzje</a></li>
             <li><a href="gallery.html">Galeria</a></li>
-            <li><a href="booking.html">Dołącz do nas</a></li>
+            <li><a href="rekrutacja.html">Rekrutacja</a></li>
             <li><a href="dashboard.html">Dashboard</a></li>
         </ul>
     </nav>
 
-
+    <!-- zLab5: Główny kontener z sekcjami - opis strony, geolokalizacja, quiz -->
     <main>
+        <!-- zLab2: Panel sekcji z opisem strony -->
         <section class="section-panel section-panel--intro">
-            <h2>Witaj w Górskich Rozgrywkach!</h2>
-            <p>Platforma informacyjna dla miłośników gór i gier komputerowych, którzy pragną połączyć pasję do
-                wspinaczki i pieszych wędrówek z miłością do eksploracji cyfrowych światów.</p>
+            <h2>O stronie</h2>
+            <p>
+                Witamy na stronie poświęconej grom komputerowym z motywami górskimi.
+                Przedstawiamy trzy wyjątkowe tytuły: <em>Wiedźmin 3: Dziki Gon</em>,
+                <em>The Elder Scrolls V: Skyrim</em> oraz <em>Celeste</em>.
+            </p>
+            <p>
+                Zapraszamy do zapoznania się z recenzjami, galerią screenów, formularzem rekrutacji
+                oraz quizem sprawdzającym wiedzę o górskich przygodach w wirtualnym świecie.
+            </p>
         </section>
 
+        <!-- zLab11cz2: Sekcja geolokalizacji z przyciskiem i wynikiem -->
         <section class="section-panel section-panel--geo">
-            <h2>Odległość od Kwatery Głównej</h2>
-            <p>Siedziba naszego klubu mieści się u podnóża Tatr w Zakopanem. Sprawdź, jak długa droga czeka Cię na
-                najbliższy zlot fizyczny.</p>
-            <button id="geoBtn" class="action-btn">Oblicz dystans do bazy</button>
+            <h2>Odległość do bazy w Zakopanem</h2>
+            <p>
+                Sprawdź, jak daleko jesteś od Zakopanego,
+                aby obliczyć przybliżoną odległość na podstawie Twojej lokalizacji.
+            </p>
+            <button type="button" id="geoBtn" class="action-btn">Sprawdź odległość</button>
             <p id="geoResult" class="geo-text"></p>
         </section>
 
+        <!-- zLab7: Kontener quizu SPA -->
         <section class="section-panel section-panel--quiz" id="quiz-container">
             <div id="start-screen">
-                <h2>Czy jesteś gotów na cyfrową wspinaczkę?</h2>
-                <p>Przed Tobą zestaw pytań dotyczących najsłynniejszych górskich motywów w grach Wiedźmin 3, Skyrim
-                    oraz Celeste. Zdobądź szczyt wiedzy!</p>
-                <button id="start-btn" class="quiz-btn">Rozpocznij Quiz</button>
-                <!-- zLab7: przycisk startu inicjuje interaktywny quiz w JavaScript -->
+                <h2>Quiz</h2>
+                <p>
+                    Sprawdź swoją wiedzę o górach w grach! Quiz składa się z 6 pytań
+                    dotyczących Wiedźmina 3, Skyrim i Celeste.
+                </p>
+                <button type="button" id="start-btn" class="quiz-btn">Rozpocznij quiz</button>
             </div>
+        </section>
+
+        <!-- zLab2: Panel sekcji z ciekawostkami -->
+        <section class="section-panel">
+            <h2>Ciekawostki o górach w grach</h2>
+            <p>
+                <strong>Wiedźmin 3:</strong> Kaer Morhen, twierdza wiedźminów w Górach Sinych,
+                została zainspirowana polskimi Tatrami. Twórcy gry odwiedzili Zakopane, aby lepiej oddać klimat
+                górskiego krajobrazu.
+            </p>
+            <p>
+                <strong>Skyrim:</strong> Gardło Świata, najwyższy szlak w Skyrim, liczy 7000 stopni.
+                W rzeczywistości inspiracją dla tej gry były norweskie fiordy i góry Skandynawii.
+            </p>
+            <p>
+                <strong>Celeste:</strong> Góra Celeste w grze jest inspirowana prawdziwym Mount Celeste
+                w Kanadzie. Gra metaforycznie przedstawia walkę z depresją i lękiem poprzez wspinaczkę.
+            </p>
         </section>
     </main>
 
-
+    <!-- zLab5: stopka z użyciem selektora footer -->
     <footer>
-        <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych - Gry komputerowe</p>
+        <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych – Gry komputerowe</p>
         <p>Autor: Mariia Nyzhnyk</p>
     </footer>
 
+    <!-- zLab6: Dołączenie skryptów JS -->
     <script src="js/script.js"></script>
+    <script src="js/geo.js"></script>
     <script src="js/quiz.js"></script>
 </body>
 

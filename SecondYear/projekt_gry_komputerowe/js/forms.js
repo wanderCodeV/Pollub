@@ -1,5 +1,4 @@
-﻿
-/* zLab12: klasa przechowująca odpowiedzi z ankiety oraz konwersję do/z JSON */
+﻿/* zLab12: klasa przechowująca odpowiedzi z ankiety oraz konwersję do/z JSON */
 class SurveyResponse {
     constructor(gameType, favPlatform, hypeLevel, userMessage) {
         this.gameType = gameType;
@@ -29,49 +28,44 @@ class SurveyResponse {
 const preferencesForm = document.getElementById('preferencesForm');
 const surveyStatus = document.getElementById('surveyStatus');
 
+function renderSurveyStatus(response, title) {
+    if (!surveyStatus) return;
+
+    surveyStatus.innerHTML = `
+        <div class="survey-result">
+            <h3>${title}</h3>
+            <p><strong>Gra:</strong> ${response.gameType}</p>
+            <p><strong>Platforma:</strong> ${response.favPlatform}</p>
+            <p><strong>Ocena:</strong> ${response.hypeLevel}/100</p>
+            <p><strong>Wiadomość:</strong> ${response.userMessage || '—'}</p>
+            <p class="survey-date">Zapisano: ${new Date(response.submittedAt).toLocaleString('pl-PL')}</p>
+        </div>
+    `;
+}
+
 if (preferencesForm) {
     preferencesForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const selectedType = document.querySelector('input[name="gameType"]:checked').value;
+        const selectedType = document.querySelector('input[name="gameType"]:checked');
+        if (!selectedType) return;
+
         const selectedPlatform = document.getElementById('favPlatform').value;
         const hypeValue = document.getElementById('hypeRange').value;
         const messageValue = document.getElementById('userMessage').value.trim();
 
-        const response = new SurveyResponse(selectedType, selectedPlatform, hypeValue, messageValue);
-        localStorage.setItem('surveyResponse', JSON.stringify(response.toJSON()));
+        const response = new SurveyResponse(selectedType.value, selectedPlatform, hypeValue, messageValue);
 
-        if (surveyStatus) {
-            surveyStatus.innerHTML = `
-                <div class="card mt-3">
-                    <div class="card-body">
-                        <h3 class="card-title">Zapisano ankietę!</h3>
-                        <p>Typ gry: <strong>${response.gameType}</strong></p>
-                        <p>Platforma: <strong>${response.favPlatform}</strong></p>
-                        <p>Poziom ekscytacji: <strong>${response.hypeLevel}/100</strong></p>
-                        <p>Twoja wiadomość: <strong>${response.userMessage || 'Brak dodatkowej wiadomości'}</strong></p>
-                        <p class="text-muted">Zapisano: ${new Date(response.submittedAt).toLocaleString()}</p>
-                    </div>
-                </div>`;
-        }
+        /* zLab11cz1: sessionStorage + JSON.stringify do zapisu ankiety w sesji */
+        sessionStorage.setItem('surveyResponse', JSON.stringify(response.toJSON()));
+
+        renderSurveyStatus(response, 'Zapisano');
     });
 
-    const savedResponse = localStorage.getItem('surveyResponse');
-    if (savedResponse && surveyStatus) {
+    const savedResponse = sessionStorage.getItem('surveyResponse');
+    if (savedResponse) {
         const parsed = JSON.parse(savedResponse);
         const response = SurveyResponse.fromJSON(parsed);
-        surveyStatus.innerHTML = `
-            <div class="card mt-3">
-                <div class="card-body">
-                    <h3 class="card-title">Ostatnia zapisana ankieta</h3>
-                    <p>Typ gry: <strong>${response.gameType}</strong></p>
-                    <p>Platforma: <strong>${response.favPlatform}</strong></p>
-                    <p>Poziom ekscytacji: <strong>${response.hypeLevel}/100</strong></p>
-                    <p>Twoja wiadomość: <strong>${response.userMessage || 'Brak dodatkowej wiadomości'}</strong></p>
-                    <p class="text-muted">Zapisano: ${new Date(response.submittedAt).toLocaleString()}</p>
-                </div>
-            </div>`;
+        renderSurveyStatus(response, 'Ostatnia odpowiedź');
     }
 }
-
-

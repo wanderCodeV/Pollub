@@ -1,5 +1,11 @@
-/* zLab9: skrypt galerii zarządza ładowaniem miniatur, filtrowaniem i wyświetlaniem modala */
-$(document).ready(function() {
+/* zLab9: skrypt galerii – jQuery, selektory, zdarzenia; lightbox (modal) jako plugin */
+$.fn.goraLightbox = function (onOpen) {
+    return this.on('click', function () {
+        onOpen($(this));
+    });
+};
+
+$(document).ready(function () {
     // zLab9: dane galerii są przechowywane lokalnie w tablicy obiektów
     const galleryItems = [
         // 9 miniatur Wiedźmina
@@ -52,7 +58,7 @@ $(document).ready(function() {
         const displayItems = filteredItems.slice(0, 9);
 
         displayItems.forEach(item => {
-            /* Na potrzeby zLab2 i zLab3: generujemy pojedynczy, czysty element karty, który zostanie ułożony przez CSS Grid */
+            /* generujemy pojedynczy, czysty element karty, który zostanie ułożony przez CSS Grid */
             const card = $(
                 `<div class="gallery-card" role="button" tabindex="0" data-src="${item.src}" data-sourcename="${item.sourceName}" data-sourceurl="${item.sourceUrl}">
                     <img src="${item.src}" alt="${item.game}">
@@ -77,17 +83,22 @@ $(document).ready(function() {
         const filter = $(this).data('filter');
         $buttons.removeClass('active');
         $(this).addClass('active');
+        /* zLab11cz1: sessionStorage – zapamiętanie aktywnego filtra w bieżącej sesji */
+        try {
+            sessionStorage.setItem('galleryFilter', filter);
+        } catch (_) { /* ignore */ }
         renderGallery(filter);
     });
 
+    // zLab9: Event delegation for dynamically added gallery cards
     $galleryGrid.on('click', '.gallery-card', function() {
-        const item = {
-            src: $(this).data('src'),
-            sourceName: $(this).data('sourcename'),
-            sourceUrl: $(this).data('sourceurl'),
-            game: $(this).find('img').attr('alt')
-        };
-        openModal(item);
+        const $card = $(this);
+        openModal({
+            src: $card.data('src'),
+            sourceName: $card.data('sourcename'),
+            sourceUrl: $card.data('sourceurl'),
+            game: $card.find('img').attr('alt')
+        });
     });
 
     $('#galleryModalClose').on('click', closeModal);
@@ -103,5 +114,15 @@ $(document).ready(function() {
         }
     });
 
-    renderGallery();
+    let startFilter = 'all';
+    try {
+        const savedFilter = sessionStorage.getItem('galleryFilter');
+        if (savedFilter) {
+            startFilter = savedFilter;
+            $buttons.removeClass('active');
+            $buttons.filter('[data-filter="' + savedFilter + '"]').addClass('active');
+        }
+    } catch (_) { /* ignore */ }
+
+    renderGallery(startFilter === 'all' ? 'all' : startFilter);
 });

@@ -1,0 +1,122 @@
+<!-- zLab1cz1: Struktura dokumentu HTML5 – ankieta rekrutacyjna do gildii -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Górskie Rozgrywki - Rekrutacja do Gildii</title>
+    <!-- zLab2: Link do pliku CSS -->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rekrutacja.css">
+</head>
+<body>
+
+    <!-- zLab5: nagłówek z użyciem selektora header -->
+    <header>
+        <h1>Górskie Rozgrywki</h1>
+        <p>Formularz rekrutacji</p>
+    </header>
+
+    <!-- zLab5: Pasek menu nawigacyjnego -->
+    <nav class="navbar">
+        <!-- zLab3: Kontener logotypu w menu -->
+        <div class="navbar-logo">GÓRY & GRY</div>
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Otwórz menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="navbar-menu" id="navbarMenu">
+            <li><a href="index.html">O stronie</a></li>
+            <li><a href="info.html">Przewodnik</a></li>
+            <li><a href="reviews.html">Recenzje</a></li>
+            <li><a href="gallery.html">Galeria</a></li>
+            <li><a href="rekrutacja.html" class="active">Rekrutacja</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <!-- zLab5: Główna kontener z formularzem rekrutacyjnym -->
+    <main>
+        <div id="formView">
+            <section class="section-panel">
+                <h2 id="formPanelTitle">Formularz rekrutacyjny</h2>
+                <!-- zLab1cz2: Formularz z polami tekstowymi, select, radio, checkbox, submit -->
+                <!-- zLab4: Typy HTML5 – email, tel, date, number; atrybuty required, min, max, pattern -->
+                <!-- zLab8: Walidacja po stronie klienta w js/booking.js -->
+                <form id="expeditionForm" novalidate>
+                    <div class="form-group">
+                        <label for="userName">Imię / nick członka:</label>
+                        <input type="text" id="userName" class="input-field" placeholder="Min. 3 znaki" required minlength="3">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userEmail">Adres e-mail:</label>
+                        <input type="email" id="userEmail" class="input-field" placeholder="np. gracz@gory.pl" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userWebsite">Strona WWW (opcjonalnie):</label>
+                        <input type="text" id="userWebsite" class="input-field" placeholder="https://mojastrona.pl">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userPhone">Telefon (9 cyfr):</label>
+                        <input type="tel" id="userPhone" class="input-field" placeholder="123456789" required pattern="[0-9]{9}" title="Dokładnie 9 cyfr">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tripDate">Planowana data dołączenia:</label>
+                        <input type="date" id="tripDate" class="input-field" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expeditionType">Rodzaj pierwszej ekspedycji:</label>
+                        <select id="expeditionType" class="input-field" required>
+                            <option value="Trekking">Trekking</option>
+                            <option value="RPG-Guild">Rajd w grze MMO</option>
+                            <option value="Survival">Szkolenie survivalowe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="label-block">Preferowany styl rozgrywki:</span>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gameStyle" value="RPG" required> RPG</label>
+                            <label><input type="radio" name="gameStyle" value="Platformowka"> Platformówka</label>
+                            <label><input type="radio" name="gameStyle" value="Przygodowa"> Przygodowa</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="termsAgree" required>
+                            Akceptuję regulamin gildii.
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="groupSize">Poziom postaci / doświadczenie (1–10):</label>
+                        <input type="number" id="groupSize" class="input-field" min="1" max="10" value="1" required>
+                    </div>
+
+                    <div id="formError" class="error-msg"></div>
+                    <button type="submit" id="submitExpeditionBtn" class="submit-btn">Wyślij formularz</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- zLab11cz1: Widok profilu – dane z localStorage -->
+        <div id="profileView" style="display: none;"></div>
+    </main>
+
+    <!-- zLab5: stopka z użyciem selektora footer -->
+    <footer>
+        <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych – Gry komputerowe</p>
+        <p>Autor: Mariia Nyzhnyk</p>
+    </footer>
+
+    <!-- zLab6: Dołączenie skryptów JS -->
+    <script src="js/script.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>

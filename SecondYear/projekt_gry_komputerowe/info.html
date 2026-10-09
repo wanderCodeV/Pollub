@@ -1,56 +1,49 @@
+<!-- zLab1cz1: Struktura dokumentu HTML5 i sekcja nagłówkowa head -->
 <!DOCTYPE html>
-
 <html lang="pl">
-
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Górskie Rozgrywki - Strona Główna</title>
+    <title>Górskie Rozgrywki - Przewodnik</title>
+    <!-- zLab2: Link do pliku CSS -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/info.css">
-    <!-- zLab2: strona główna zawierająca opis najważniejszych elementów projektu -->
 </head>
-
 <body>
 
+    <!-- zLab5: nagłówek z użyciem selektora header -->
     <header>
         <h1>Górskie Rozgrywki</h1>
-        <p>Niezwykłe symbiozy cyfrowego świata gier i majestatycznych szczytów</p>
+        <p>Opisy gier i krótka ankieta preferencji</p>
     </header>
 
-
+    <!-- zLab5: Pasek menu nawigacyjnego -->
     <nav class="navbar">
-        <!-- zLab2: główna nawigacja między stronami z projektu -->
-        <div class="navbar-logo">
-            GÓRY & GRY
-        </div>
-
+        <!-- zLab3: Kontener logotypu w menu -->
+        <div class="navbar-logo">GÓRY & GRY</div>
         <button class="navbar-toggle" id="navbarToggle" aria-label="Otwórz menu">
-            <span></span> <span></span> <span></span> </button>
-
+            <span></span><span></span><span></span>
+        </button>
         <ul class="navbar-menu" id="navbarMenu">
-            <li><a href="index.html">O nas</a></li>
+            <li><a href="index.html">O stronie</a></li>
             <li><a href="info.html" class="active">Przewodnik</a></li>
             <li><a href="reviews.html">Recenzje</a></li>
             <li><a href="gallery.html">Galeria</a></li>
-            <li><a href="booking.html">Dołącz do nas</a></li>
+            <li><a href="rekrutacja.html">Rekrutacja</a></li>
             <li><a href="dashboard.html">Dashboard</a></li>
         </ul>
     </nav>
 
-
+    <!-- zLab5: Główna kontener z sekcjami opisującymi gry -->
     <main>
+        <!-- zLab3: Sekcja z opisem trzech gier – układ Flexbox -->
         <section class="section-panel section-panel--games">
-
             <div class="panel-item">
-                <img src="img/wiedzmin1.webp" alt=">Wiedźmin 3: Dziki Gon">
+                <img src="img/wiedzmin1.webp" alt="Wiedźmin 3: Dziki Gon">
                 <div class="panel-info">
                     <h2>Wiedźmin 3: Dziki Gon</h2>
                     <p>Wiedźmin 3: Dziki Gon (ang. The Witcher 3: Wild Hunt) – trzecia odsłona serii gier komputerowych
-                        Wiedźmin, opowiadającej historię Geralta z Rivii, studia CD Projekt RED. Historia gry toczy się
+                        Wiedźmin, opowiadającej historię Geralta z Rivii, studia <strong>CD Projekt RED</strong>. Historia gry toczy się
                         po wydarzeniach z drugiej części. Fabuła skupia się głównie na dwóch wydarzeniach – inwazji
                         Nilfgaardu na Północne Królestwa oraz misji Geralta, polegającej na pozbyciu się Dzikiego Gonu.
                     </p>
@@ -61,7 +54,6 @@
                                 target="_blank">wiedzmin.fandom.com</a>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -69,8 +61,8 @@
                 <img src="img/skyrim1.webp" alt="The Elder Scrolls V: Skyrim">
                 <div class="panel-info">
                     <h2>The Elder Scrolls V: Skyrim</h2>
-                    <p>Zrealizowana z dużym rozmachem gra action-RPG, będąca piątą częścią popularnego cyklu The Elder
-                        Scrolls. Produkcja studia Bethesda Softworks pozwala graczom ponownie przenieść się do
+                    <p>Zrealizowana z dużym rozmachem gra action-RPG, będąca piątą częścią popularnego cyklu <strong> The Elder
+                        Scrolls</strong>. Produkcja studia Bethesda Softworks pozwala graczom ponownie przenieść się do
                         fantastycznego świata Nirn. Akcja The Elder Scrolls V: Skyrim osadzona została 200 lat po
                         wydarzeniach przedstawionych w The Elder Scrolls IV: Oblivion. Główny bohater jest jednym z
                         ostatnich łowców smoków (dovahkiin).</p>
@@ -90,30 +82,67 @@
                     <h2>Celeste</h2>
                     <p>Gra stawia przed Madeline, główną bohaterką gry – wyzwanie w postaci wspinaczki na szczyt
                         tytułowej góry. Madeline wspina się, aby udowodnić samej sobie, że potrafi. Bohaterka cierpiąca
-                        na ataki
-                        paniki, stany lękowe i kliniczną depresję liczy, że zdobycie szczytu pozwoli jej całkowicie
+                        na ataki paniki, stany lękowe i kliniczną depresję liczy, że zdobycie szczytu pozwoli jej całkowicie
                         pozbyć się negatywnych myśli, ale podświadomie traktuje też wyprawę bardziej jako ucieczkę przez
-                        problemami. Sęk w tym, że Celeste to gra nie tylko opowiadająca o wspinacze, a wspinaczka sama w
+                        problemami. Sęk w tym, że <strong>Celeste</strong> to gra nie tylko opowiadająca o wspinacze, a wspinaczka sama w
                         sobie.</p>
                     <div class="panel-source">
                         <div>Źródło:</div>
                         <div>
                             <a href="https://myhandhelds.pl/2020/03/09/celeste/" target="_blank">myhandhelds.pl</a>
                         </div>
-                    </div>
                 </div>
             </div>
+        </section>
 
+        <!-- zLab1cz2: Formularz ankiety preferencji -->
+        <section class="section-panel">
+            <h2>Ankieta preferencji</h2>
+            <p>Podziel się swoimi ulubionymi grami i platformą. Twoje odpowiedzi zostaną zapisane w przeglądarce.</p>
+
+            <form id="preferencesForm">
+                <div class="form-group">
+                    <span class="label-block">Ulubiona gra:</span>
+                    <label><input type="radio" name="gameType" value="Wiedźmin 3" required> Wiedźmin 3</label>
+                    <label><input type="radio" name="gameType" value="Skyrim"> Skyrim</label>
+                    <label><input type="radio" name="gameType" value="Celeste"> Celeste</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="favPlatform">Platforma:</label>
+                    <select id="favPlatform" class="input-field" required>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hypeRange">Ocena zainteresowania (1–100):</label>
+                    <input type="range" id="hypeRange" class="input-field" min="1" max="100" value="50">
+                </div>
+
+                <div class="form-group">
+                    <label for="userMessage">Wiadomość (opcjonalnie):</label>
+                    <textarea id="userMessage" class="input-field" rows="3" placeholder="Dowolna uwaga"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Zapisz</button>
+            </form>
+
+            <div id="surveyStatus"></div>
         </section>
     </main>
 
-
+    <!-- zLab5: stopka z użyciem selektora footer -->
     <footer>
-        <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych - Gry komputerowe</p>
+        <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych – Gry komputerowe</p>
         <p>Autor: Mariia Nyzhnyk</p>
     </footer>
 
+    <!-- zLab6: Dołączenie skryptów JS -->
     <script src="js/script.js"></script>
+    <script src="js/forms.js"></script>
 </body>
-
 </html>

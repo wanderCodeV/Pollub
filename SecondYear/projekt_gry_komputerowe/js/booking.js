@@ -1,30 +1,167 @@
-﻿/* zLab1cz2: skrypt obsługujący formularz rekrutacji, walidację, zapis profilu i geolokalizację */
-const formView = document.getElementById('formView');
-const profileView = document.getElementById('profileView');
-const form = document.getElementById('expeditionForm');
+﻿/* zLab7/zLab8/zLab11cz1: Rekrutacja – SPA (widok formularz/profil), walidacja JS, localStorage */
+/* zLab1cz2/zLab4: Formularz HTML w rekrutacja.html – pola, typy HTML5, required, pattern */
+let formView, profileView, form, nameInput, emailInput, websiteInput, phoneInput, dateInput, expeditionTypeInput, gameStyleInputs, termsAgreeInput, lvlInput, errorDiv;
+let formSubmitHandler = null;
 
-const nameInput = document.getElementById('userName');
-const emailInput = document.getElementById('userEmail');
-const websiteInput = document.getElementById('userWebsite');
-const phoneInput = document.getElementById('userPhone');
-const dateInput = document.getElementById('tripDate');
-const expeditionTypeInput = document.getElementById('expeditionType');
-const gameStyleInputs = document.querySelectorAll('input[name="gameStyle"]');
-const termsAgreeInput = document.getElementById('termsAgree');
-const lvlInput = document.getElementById('groupSize');
-const errorDiv = document.getElementById('formError');
+const STORAGE_KEYS = [
+    'savedName', 'savedEmail', 'savedWebsite', 'savedPhone',
+    'savedDate', 'savedType', 'savedStyle', 'savedLvl'
+];
 
-function checkGildiaStatus() {
-    // zLab11cz1: sprawdzenie, czy formularz już był wcześniej zapisany w localStorage
-    if (localStorage.getItem('savedName')) {
-        renderProfile();
-    } else {
-        if (formView) formView.style.display = 'block';
-        if (profileView) profileView.style.display = 'none';
+function initElements() {
+    formView = document.getElementById('formView');
+    profileView = document.getElementById('profileView');
+    form = document.getElementById('expeditionForm');
+    nameInput = document.getElementById('userName');
+    emailInput = document.getElementById('userEmail');
+    websiteInput = document.getElementById('userWebsite');
+    phoneInput = document.getElementById('userPhone');
+    dateInput = document.getElementById('tripDate');
+    expeditionTypeInput = document.getElementById('expeditionType');
+    gameStyleInputs = document.querySelectorAll('input[name="gameStyle"]');
+    termsAgreeInput = document.getElementById('termsAgree');
+    lvlInput = document.getElementById('groupSize');
+    errorDiv = document.getElementById('formError');
+}
+
+function showError(message) {
+    if (!errorDiv) return;
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+    errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function clearError() {
+    if (!errorDiv) return;
+    errorDiv.textContent = '';
+    errorDiv.style.display = 'none';
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function hasSavedProfile() {
+    try {
+        return !!localStorage.getItem('savedName');
+    } catch (_) {
+        return false;
     }
 }
 
-window.addEventListener('DOMContentLoaded', checkGildiaStatus);
+function clearProfileStorage() {
+    try {
+        STORAGE_KEYS.forEach((key) => localStorage.removeItem(key));
+    } catch (_) {
+        /* localStorage niedostępny */
+    }
+}
+
+function readStorageItem(key, fallback) {
+    try {
+        return localStorage.getItem(key) || fallback;
+    } catch (_) {
+        return fallback;
+    }
+}
+
+function getProfileData() {
+    const website = readStorageItem('savedWebsite', '');
+    return {
+        name: readStorageItem('savedName', ''),
+        email: readStorageItem('savedEmail', ''),
+        website: website === '—' ? '' : website,
+        phone: readStorageItem('savedPhone', ''),
+        date: readStorageItem('savedDate', ''),
+        type: readStorageItem('savedType', 'Trekking'),
+        style: readStorageItem('savedStyle', ''),
+        lvl: readStorageItem('savedLvl', '1')
+    };
+}
+
+function setFormMode(mode) {
+    const titleEl = document.getElementById('formPanelTitle');
+    const submitBtn = document.getElementById('submitExpeditionBtn');
+
+    if (mode === 'edit') {
+        if (titleEl) titleEl.textContent = 'Edycja danych';
+        if (submitBtn) submitBtn.textContent = 'Zapisz zmiany';
+    } else {
+        if (titleEl) titleEl.textContent = 'Formularz rekrutacji';
+        if (submitBtn) submitBtn.textContent = 'Wyślij formularz';
+    }
+}
+
+function fillFormWithProfile(data) {
+    if (!nameInput) return;
+
+    nameInput.value = data.name;
+    emailInput.value = data.email;
+    websiteInput.value = data.website;
+    phoneInput.value = data.phone;
+    dateInput.value = data.date;
+    expeditionTypeInput.value = data.type;
+    lvlInput.value = data.lvl;
+
+    gameStyleInputs.forEach((radio) => {
+        radio.checked = radio.value === data.style;
+    });
+
+    if (termsAgreeInput) {
+        termsAgreeInput.checked = true;
+    }
+}
+
+function showFormView(options = {}) {
+    const { reset = true, mode = 'new' } = options;
+
+    if (formView) formView.style.display = 'block';
+    if (profileView) {
+        profileView.style.display = 'none';
+        profileView.innerHTML = '';
+    }
+
+    if (reset && form) {
+        form.reset();
+        if (lvlInput) lvlInput.value = '1';
+        gameStyleInputs.forEach((radio) => {
+            radio.checked = false;
+        });
+        if (termsAgreeInput) termsAgreeInput.checked = false;
+    }
+
+    setFormMode(mode);
+    clearError();
+}
+
+function showEditForm() {
+    initElements();
+    showFormView({ reset: false, mode: 'edit' });
+    fillFormWithProfile(getProfileData());
+}
+
+function checkGildiaStatus() {
+    initElements();
+    setupFormListener();
+
+    if (hasSavedProfile()) {
+        renderProfile();
+    } else {
+        showFormView({ reset: true, mode: 'new' });
+    }
+}
+
+function runWhenDomReady(callback) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', callback);
+    } else {
+        callback();
+    }
+}
+
+runWhenDomReady(checkGildiaStatus);
 
 function getSelectedGameStyle() {
     for (const radio of gameStyleInputs) {
@@ -35,178 +172,180 @@ function getSelectedGameStyle() {
     return '';
 }
 
+function getTodayDateString() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate();
+    if (mm < 10) mm = '0' + mm;
+    if (dd < 10) dd = '0' + dd;
+    return `${yyyy}-${mm}-${dd}`;
+}
+
+function formatWebsiteDisplay(website) {
+    if (!website || website === '—') {
+        return '—';
+    }
+    return website;
+}
+
+function bindProfileActions() {
+    const editBtn = document.getElementById('editProfileBtn');
+    const deleteBtn = document.getElementById('deleteProfileBtn');
+
+    if (editBtn) {
+        editBtn.addEventListener('click', showEditForm);
+    }
+
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', () => {
+            if (confirm('Czy na pewno usunąć zapisane dane z przeglądarki?')) {
+                clearProfileStorage();
+                if (form) form.reset();
+                clearError();
+                checkGildiaStatus();
+            }
+        });
+    }
+}
+
 function renderProfile() {
-    if (!formView || !profileView) return;
+    if (formView) formView.style.display = 'none';
+    if (profileView) profileView.style.display = 'block';
 
-    formView.style.display = 'none';
-    profileView.style.display = 'block';
-
-    const name = localStorage.getItem('savedName') || '';
-    const email = localStorage.getItem('savedEmail') || '';
-    const website = localStorage.getItem('savedWebsite') || '';
-    const phone = localStorage.getItem('savedPhone') || '';
-    const date = localStorage.getItem('savedDate') || '';
-    const expeditionType = localStorage.getItem('savedExpeditionType') || '';
-    const gameStyle = localStorage.getItem('savedGameStyle') || '';
-    const lvl = localStorage.getItem('savedLvl') || '';
+    const data = getProfileData();
+    const websiteDisplay = formatWebsiteDisplay(readStorageItem('savedWebsite', '—'));
 
     profileView.innerHTML = `
-        <h2>Twój Profil w Gildii</h2>
-        <div class="profile-card">
-            <p><strong>Kandydat:</strong> ${name}</p>
-            <p><strong>E-mail:</strong> ${email}</p>
-            <p><strong>Profil:</strong> ${website || 'Brak'}</p>
-            <p><strong>Kontakt:</strong> ${phone}</p>
-            <p><strong>Data pierwszej wyprawy:</strong> ${date}</p>
-            <p><strong>Typ wyprawy:</strong> ${expeditionType}</p>
-            <p><strong>Styl gry:</strong> ${gameStyle}</p>
-            <p><strong>Poziom doświadczenia:</strong> <span class="rank-highlight">${lvl} / 10</span></p>
-        </div>
-        <div class="profile-actions">
-            <button class="action-btn" onclick="editProfile()">Edytuj dane</button>
-            <button class="submit-btn" style="margin-top: 10px;" onclick="deleteProfile()">Opuść Gildię (Usuń mnie)</button>
-        </div>
+        <section class="section-panel">
+            <h2>Twoje dane</h2>
+            <p><strong>Imię / Nick:</strong> ${escapeHtml(data.name)}</p>
+            <p><strong>E-mail:</strong> ${escapeHtml(data.email)}</p>
+            <p><strong>Strona WWW:</strong> ${escapeHtml(websiteDisplay)}</p>
+            <p><strong>Telefon:</strong> ${escapeHtml(data.phone)}</p>
+            <p><strong>Data dołączenia:</strong> ${escapeHtml(data.date)}</p>
+            <p><strong>Typ ekspedycji:</strong> ${escapeHtml(data.type)}</p>
+            <p><strong>Styl rozgrywki:</strong> ${escapeHtml(data.style)}</p>
+            <p><strong>Poziom postaci:</strong> ${escapeHtml(data.lvl)} / 10</p>
+            <div class="profile-actions">
+                <button type="button" id="editProfileBtn" class="action-btn">Edytuj dane</button>
+                <button type="button" id="deleteProfileBtn" class="submit-btn">Usuń dane</button>
+            </div>
+        </section>
     `;
+
+    bindProfileActions();
 }
 
-if (form) {
-    // zLab8: przechwycenie submit formularza i wykonanie walidacji JS przed zapisem
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const errors = [];
-        errorDiv.style.display = 'none';
-        errorDiv.innerText = '';
-
-        const selectedDate = new Date(dateInput.value);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        if (!nameInput.value.trim()) {
-            errors.push('Musisz podać swoje imię i nick.');
-        }
-        if (!emailInput.value.trim()) {
-            errors.push('Musisz podać adres e-mail.');
-        }
-        if (!phoneInput.value.trim()) {
-            errors.push('Musisz podać numer telefonu.');
-        }
-        if (!dateInput.value) {
-            errors.push('Musisz wybrać datę wyprawy.');
-        } else if (selectedDate < today) {
-            errors.push('Data wyprawy nie może być z przeszłości!');
-        }
-        if (!expeditionTypeInput.value) {
-            errors.push('Musisz wybrać typ wyprawy.');
-        }
-        if (!getSelectedGameStyle()) {
-            errors.push('Musisz wybrać preferowany styl gry.');
-        }
-        if (!termsAgreeInput.checked) {
-            errors.push('Musisz zaakceptować regulamin gildii.');
-        }
-
-        const phonePattern = /^[0-9]{9}$/;
-        if (!phonePattern.test(phoneInput.value)) {
-            errors.push('Numer telefonu musi składać się z dokładnie 9 cyfr.');
-        }
-
-        const lvlValue = parseInt(lvlInput.value, 10);
-        if (Number.isNaN(lvlValue) || lvlValue < 1 || lvlValue > 10) {
-            errors.push('Poziom doświadczenia postaci musi mieścić się w przedziale od 1 do 10!');
-        }
-
-        if (errors.length > 0) {
-            errorDiv.innerText = errors.join(' ');
-            errorDiv.style.display = 'block';
-            return;
-        }
-
-        // zLab11cz1: zapis formularza do localStorage i serializacja danych
-        localStorage.setItem('savedName', nameInput.value.trim());
-        localStorage.setItem('savedEmail', emailInput.value.trim());
-        localStorage.setItem('savedWebsite', websiteInput.value.trim());
-        localStorage.setItem('savedPhone', phoneInput.value.trim());
-        localStorage.setItem('savedDate', dateInput.value);
-        localStorage.setItem('savedExpeditionType', expeditionTypeInput.value);
-        localStorage.setItem('savedGameStyle', getSelectedGameStyle());
-        localStorage.setItem('savedLvl', lvlInput.value);
-
-        alert('Zgłoszenie wysłane! Zostałeś zarejestrowany w bazie Gildii.');
-        renderProfile();
-    });
-}
-
-window.editProfile = function() {
-    formView.style.display = 'block';
-    profileView.style.display = 'none';
-
-    nameInput.value = localStorage.getItem('savedName') || '';
-    emailInput.value = localStorage.getItem('savedEmail') || '';
-    websiteInput.value = localStorage.getItem('savedWebsite') || '';
-    phoneInput.value = localStorage.getItem('savedPhone') || '';
-    dateInput.value = localStorage.getItem('savedDate') || '';
-    expeditionTypeInput.value = localStorage.getItem('savedExpeditionType') || '';
-
-    const savedStyle = localStorage.getItem('savedGameStyle');
-    gameStyleInputs.forEach((radio) => {
-        radio.checked = radio.value === savedStyle;
-    });
-
-    termsAgreeInput.checked = true;
-    lvlInput.value = localStorage.getItem('savedLvl') || '1';
-};
-
-window.deleteProfile = function() {
-    if (confirm('Czy na pewno chcesz usunąć swoje zgłoszenie i opuścić Gildię?')) {
-        localStorage.removeItem('savedName');
-        localStorage.removeItem('savedEmail');
-        localStorage.removeItem('savedWebsite');
-        localStorage.removeItem('savedPhone');
-        localStorage.removeItem('savedDate');
-        localStorage.removeItem('savedExpeditionType');
-        localStorage.removeItem('savedGameStyle');
-        localStorage.removeItem('savedLvl');
-
-        form.reset();
-        alert('Twoje dane zostały trwale usunięte z bazy danych przeglądarki.');
-        checkGildiaStatus();
+function saveProfileData(data) {
+    try {
+        localStorage.setItem('savedName', data.name);
+        localStorage.setItem('savedEmail', data.email);
+        localStorage.setItem('savedWebsite', data.website);
+        localStorage.setItem('savedPhone', data.phone);
+        localStorage.setItem('savedDate', data.date);
+        localStorage.setItem('savedType', data.type);
+        localStorage.setItem('savedStyle', data.style);
+        localStorage.setItem('savedLvl', data.lvl);
+        return true;
+    } catch (_) {
+        showError('Nie udało się zapisać danych. Otwórz stronę przez serwer HTTP (np. Live Server), nie jako plik file://.');
+        return false;
     }
-};
-
-const geoBtn = document.getElementById('geoBtn');
-if (geoBtn) {
-    // zLab11cz2: geolokalizacja wysyła współrzędne i oblicza dystans do Zakopanego
-    geoBtn.addEventListener('click', () => {
-        const resultText = document.getElementById('geoResult');
-        if (!navigator.geolocation) {
-            resultText.innerText = 'Geolokacja nie jest wspierana przez Twoją przeglądarkę.';
-            return;
-        }
-
-        resultText.innerText = 'Pobieranie danych satelitarnych...';
-
-        navigator.geolocation.getCurrentPosition((position) => {
-            const userLat = position.coords.latitude;
-            const userLon = position.coords.longitude;
-            const tatryLat = 49.299181;
-            const tatryLon = 19.949562;
-
-            const R = 6371;
-            const dLat = (tatryLat - userLat) * Math.PI / 180;
-            const dLon = (tatryLon - userLon) * Math.PI / 180;
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(userLat * Math.PI / 180) * Math.cos(tatryLat * Math.PI / 180) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            const distance = Math.round(R * c);
-
-            resultText.innerHTML = `Twoja pozycja: <b>${userLat.toFixed(4)}, ${userLon.toFixed(4)}</b>.<br>Znajdujesz się około <b>${distance} km</b> od kwatery głównej gildii w Zakopanem!`;
-        }, () => {
-            resultText.innerText = 'Brak dostępu do lokalizacji.';
-        });
-    });
 }
 
-// Removed jQuery-dependent UI effects (FAQ toggle / counters) to avoid requiring jQuery.
+function handleFormSubmit(event) {
+    event.preventDefault();
+    initElements();
+    clearError();
 
+    if (!form || !nameInput || !emailInput || !phoneInput || !dateInput) {
+        showError('Błąd ładowania formularza. Odśwież stronę (Ctrl+F5).');
+        return;
+    }
+
+    const nameVal = nameInput.value.trim();
+    if (nameVal.length < 3) {
+        showError('Imię lub Nick musi mieć co najmniej 3 znaki.');
+        return;
+    }
+
+    const emailVal = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailVal)) {
+        showError('Wprowadź poprawny adres e-mail.');
+        return;
+    }
+
+    const websiteVal = websiteInput.value.trim();
+    if (websiteVal.length > 0) {
+        try {
+            new URL(websiteVal);
+        } catch (_) {
+            showError('Wprowadź pełny i poprawny adres URL (np. https://mojastrona.pl).');
+            return;
+        }
+    }
+
+    const phoneVal = phoneInput.value.trim();
+    const phoneRegex = /^[0-9]{9}$/;
+    if (!phoneRegex.test(phoneVal)) {
+        showError('Numer telefonu musi składać się z dokładnie 9 cyfr.');
+        return;
+    }
+
+    const dateVal = dateInput.value;
+    if (!dateVal) {
+        showError('Wybierz planowaną datę dołączenia.');
+        return;
+    }
+    const todayStr = getTodayDateString();
+    if (dateVal < todayStr) {
+        showError('Data dołączenia do wyprawy nie może być z przeszłości!');
+        return;
+    }
+
+    const gameStyleVal = getSelectedGameStyle();
+    if (!gameStyleVal) {
+        showError('Proszę wybrać preferowany styl rozgrywki.');
+        return;
+    }
+
+    if (!termsAgreeInput.checked) {
+        showError('Musisz zaakceptować regulamin gildii, aby kontynuować.');
+        return;
+    }
+
+    const lvlVal = Number(lvlInput.value);
+    if (!Number.isInteger(lvlVal) || lvlVal < 1 || lvlVal > 10) {
+        showError('Poziom postaci musi być liczbą całkowitą od 1 do 10.');
+        return;
+    }
+
+    const saved = saveProfileData({
+        name: nameVal,
+        email: emailVal,
+        website: websiteVal || '—',
+        phone: phoneVal,
+        date: dateVal,
+        type: expeditionTypeInput.value,
+        style: gameStyleVal,
+        lvl: String(lvlVal)
+    });
+
+    if (saved) {
+        clearError();
+        renderProfile();
+    }
+}
+
+function setupFormListener() {
+    if (!form) return;
+
+    if (formSubmitHandler) {
+        form.removeEventListener('submit', formSubmitHandler);
+    }
+
+    formSubmitHandler = handleFormSubmit;
+    form.addEventListener('submit', formSubmitHandler);
+}

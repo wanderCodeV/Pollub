@@ -1,4 +1,4 @@
-/* Stylizacja galerii z wykorzystaniem CSS Grid i Box Model */
+/* zLab2/zLab3: Stylizacja galerii z wykorzystaniem CSS Grid i Box Model */
 .gallery-controls {
     display: flex;
     flex-wrap: wrap;
@@ -59,13 +59,6 @@
     width: 100%;
     height: 250px;
 }
-
-.gallery-card-body {
-    padding: 18px;
-    flex-grow: 1;
-    background: var(--white);
-}
-
 
 /* Stylizacja Modala */
 .gallery-modal {

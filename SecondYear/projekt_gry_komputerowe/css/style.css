@@ -1,5 +1,5 @@
-/* Ogólny układ dla sekcji informacyjnych i formularzy */
-.section-panel{
+/* zLab2: Box model i tło głównych paneli sekcji strony */
+.section-panel {
     max-width: var(--content-max-width);
     margin: 40px auto;
     padding: 30px;
@@ -8,11 +8,115 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.section-panel h2{
+/* zLab2: Wyśrodkowanie i marginesy nagłówków H2 w panelach */
+.section-panel h2 {
+    text-align: center;
+    color: var(--red);
+    margin-top: 0;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* zLab2: Interlinia oraz kolorystyka akapitów tekstowych */
+.section-panel p {
+    line-height: 1.7;
+    color: var(--black);
+    font-size: 18px;
+}
+
+/* zLab2: Kolor wyróżniający dla nagłówka sekcji powitalnej intro */
+.section-panel--intro {
+    max-width: var(--content-max-width);
+}
+
+.section-panel--intro h2 {
+    color: var(--blue);
+}
+
+/* zLab2: Centrowanie tekstu wewnątrz bloku */
+.section-panel--geo,
+.section-panel--quiz {
     text-align: center;
 }
 
-/* Unified form input class replacing Bootstrap form-control */
+/* zLab3: Układ elastyczny pionowy dla kontenera z listą gier */
+.section-panel--games {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* zLab3: Pozycjonowanie Flexbox dla równego wiersza z opisem gry */
+.panel-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* zLab3: Odwrócenie kierunku Flexbox dla co drugiego elementu listy gier */
+.panel-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* zLab2: Wymiary oraz elastyczne skalowanie szerokości obrazków w kartach */
+.panel-item img {
+    width: 45%;
+    max-width: 500px;
+    height: auto;
+}
+
+/* zLab2: Domyślny styl renderowania grafiki, zaokrąglenia i cienie */
+.gallery-card img,
+.panel-item img,
+.gallery-modal-content img {
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* zLab3: Elastyczne dopasowanie i rozciąganie bloku z tekstem opisowym */
+.panel-info {
+    flex: 1;
+}
+
+/* zLab2: Stylizacja, rozmiar czcionki i marginesy nagłówka karty gry */
+.panel-info h2 {
+    color: var(--red);
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* zLab2: Obustronne wyrównanie (justowanie) długich bloków tekstu */
+.panel-info p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--black);
+    text-align: justify;
+}
+
+/* zLab3: Pozycjonowanie elementu źródła informacji do prawej strony */
+.panel-source {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--grey);
+}
+
+/* zLab2: Dziedziczenie koloru tekstu dla odnośników w sekcji źródła */
+.panel-source a {
+    color: inherit;
+}
+
+/* zLab2: Efekt hover zmieniający kolor linku źródłowego na czerwony */
+.panel-source:hover {
+    color: var(--red);
+}
+
+/* zLab2: Model pudełkowy, obramowanie i dopełnienie uniwersalnych pól tekstowych */
 .input-field {
     padding: 12px;
     border: 2px solid var(--mid-grey);
@@ -23,84 +127,7 @@
     box-sizing: border-box;
 }
 
-/* Panel styles for info pages */
-.section-panel--games {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.panel-item {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-}
-
-
-/* Shared image styles applied to gallery, info and review images */
-.gallery-card img,
-.panel-item img,
-.review-slide img,
-.gallery-modal-content img {
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    display: block;
-}
-
-.panel-info {
-    flex: 1;
-}
-
-.panel-source {
-    display: flex;
-    justify-content: right;
-    gap: 10px;
-    margin-top: 15px;
-    font-size: 14px;
-    color: var(--grey);
-}
-
-.panel-source a {
-    color: inherit;
-}
-
-.panel-source:hover {
-    color: var(--red);
-}
-
-/* Shared media/image defaults used across gallery, info and reviews */
-.shared-media {
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    display: block;
-}
-
-.section-panel h2 {
-    color: var(--red);
-    margin-top: 0;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.section-panel p {
-    line-height: 1.7;
-    color: var(--black);
-}
-
-.section-panel--intro {
-    max-width: var(--content-max-width);
-}
-
-.section-panel--intro h2 {
-    color: var(--blue);
-}
-
-.section-panel--quiz {
-    text-align: center;
-}
-
+/* zLab3: Układ kolumnowy Flexbox wiążący etykietę z polem tekstowym */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -108,26 +135,27 @@
     margin-bottom: 20px;
 }
 
+/* zLab2: Pogrubienie czcionki dla etykiet pól formularza */
 .form-group label {
     font-weight: 600;
     color: var(--black);
 }
 
-.form-group input,
-.form-group select {
-    padding: 12px;
-    border: 2px solid var(--mid-grey);
-    border-radius: 10px;
-    font-size: 16px;
-    font-family: inherit;
-}
-
-.form-group input:focus,
-.form-group select:focus {
+/* zLab2: Dopełnienie wewnętrzne i zaokrąglenie podstawowych kontrolek formularza */
+/* zLab2: Aktywne podświetlenie ramki wybranego pola na niebiesko */
+.form-group .input-field:focus,
+.form-group textarea:focus {
     border-color: var(--blue);
     outline: none;
 }
 
+/* zLab4: Stylizacja pola textarea z możliwością zmiany rozmiaru */
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* zLab2: Wygląd podstawowy dla przycisków zatwierdzania i akcji */
 .submit-btn,
 .action-btn,
 .quiz-btn {
@@ -143,16 +171,19 @@
     transition: opacity 0.2s;
 }
 
+/* zLab2: Nadpisanie tła przycisku akcji na kolor niebieski */
 .action-btn {
-    background-color: var(--blue);
+    background-color: var(--light-blue);
 }
 
+/* zLab2: Płynne zmniejszenie nieprzezroczystości przycisków w stanie najechana */
 .submit-btn:hover,
 .action-btn:hover,
 .quiz-btn:hover {
     opacity: 0.9;
 }
 
+/* zLab2: Blok ostrzegawczy o błędach walidacji ukryty domyślnie */
 .error-msg {
     color: var(--red);
     background-color: #fce8e6;
@@ -163,13 +194,13 @@
     display: none;
 }
 
-/* Booking-related components removed (profile/FAQ moved out) */
-
+/* zLab2: Górny odstęp dla bloku informacyjnego geolokalizacji */
 .geo-text {
     margin-top: 15px;
     line-height: 1.5;
 }
 
+/* zLab2: Formatowanie, kolor i wielkość liter licznika pytań quizu */
 .quiz-progress {
     font-size: 14px;
     color: var(--grey);
@@ -178,6 +209,7 @@
     margin-bottom: 10px;
 }
 
+/* zLab2: Owalna plakietka z nazwą gry przypisanej do pytania */
 .quiz-badge {
     display: inline-block;
     background-color: var(--light);
@@ -189,12 +221,14 @@
     margin-bottom: 20px;
 }
 
+/* zLab3: Kolumnowe ułożenie kafelków z odpowiedziami przy użyciu Flexbox */
 .quiz-answers {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* zLab2: Wygląd domyślny przycisków opcji odpowiedzi w quizie */
 .answer-btn {
     background-color: var(--light);
     border: 2px solid var(--mid-grey);
@@ -208,11 +242,13 @@
     transition: all 0.2s ease;
 }
 
+/* zLab2: Wizualne uniesienie przycisku i podświetlenie obwódki na hover */
 .answer-btn:hover {
     border-color: var(--blue);
     transform: translateY(-2px);
 }
 
+/* zLab2: Marginesy tekstu podsumowującego i zdobytej rangi */
 .score-text,
 .rank-text {
     font-size: 20px;
@@ -223,51 +259,195 @@
     margin-bottom: 20px;
 }
 
+/* zLab2: Wyróżnienie nazwy uzyskanej rangi kolorem i wagą czcionki */
 .rank-highlight {
     color: var(--red);
     font-weight: 700;
 }
 
+/* zLab3: Kontener zapewniający przewijanie poziome tabel na smartfonach */
 .table-responsive {
     overflow-x: auto;
-    margin-top: 20px;
+    margin: 20px 0 20px 0;
 }
 
+/* zLab2: Klasyczny margines górny dla elementów pomocniczych */
 .mt-3 {
     margin-top: 1rem;
 }
 
+/* zLab1cz2: Układ Flexbox dla przycisków akcji formularza */
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* zLab1cz2: Układ Flexbox dla przycisków akcji w tabeli */
+.table-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* zLab1cz2: Stylizacja przycisków akcji w tabeli */
+.table-btn {
+    width: auto;
+    padding: 8px 14px;
+    font-size: 14px;
+}
+
+/* zLab7: Klasa pomocnicza do ukrywania elementów SPA */
+.is-hidden {
+    display: none !important;
+}
+
+/* zLab2: Krótki opis pod nagłówkiem sekcji (jak na innych podstronach) */
+.panel-note {
+    text-align: center;
+    color: var(--grey);
+    margin: -8px 0 20px;
+}
+
+/* zLab2: Stylizacja nagłówków podsekcji */
+.subsection-title {
+    text-align: center;
+    color: var(--red);
+    font-size: 24px;
+    margin: 32px 0 12px;
+}
+
+/* zLab3: Podsumowanie na dashboardzie – prosta siatka kart */
+.totals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 12px;
+    justify-content: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* zLab3: Stylizacja karty podsumowania w siatce */
+.summary-card {
+    padding: 16px 18px;
+    background-color: var(--light);
+    border-radius: 10px;
+    border-left: 4px solid var(--blue);
+}
+
+/* zLab3: Stylizacja nazwy w karcie podsumowania */
+.summary-card--name {
+    display: block;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 6px;
+}
+
+/* zLab3: Stylizacja liczby godzin w karcie podsumowania */
+.summary-card--hours {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue);
+}
+
+/* zLab3: Rozciąganie notatki na wszystkie kolumny siatki */
+.totals-grid .panel-note {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+/* zLab12: Podgląd zapisanej ankiety preferencji */
+.survey-result {
+    margin-top: 24px;
+    padding: 20px;
+    background-color: var(--light);
+    border-radius: 12px;
+    border-left: 4px solid var(--blue);
+}
+
+/* zLab12: Stylizacja nagłówka wyniku ankiety */
+.survey-result h3 {
+    margin-top: 0;
+    color: var(--blue);
+}
+
+/* zLab12: Stylizacja daty zapisania ankiety */
+.survey-date {
+    font-size: 14px;
+    color: var(--grey);
+}
+
+/* zLab7: Układ Flexbox dla przycisków akcji profilu SPA */
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* zLab2: Strukturalne połączenie krawędzi i szerokość tabeli danych */
 .table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
+/* zLab2: Dopełnienie pól i obramowanie komórek tabeli */
 .table th,
 .table td {
     padding: 14px 18px;
     border: 1px solid var(--mid-grey);
-    text-align: left;
+    text-align: center;
 }
 
+/* zLab2: Niebieski kolor wypełnienia i biały tekst nagłówka tabeli */
 .table thead th {
     background-color: var(--blue);
     color: #ffffff;
 }
 
+/* zLab2: Styl pasiasty - nadanie szarego tła parzystym wierszom tabeli */
 .table-striped tbody tr:nth-child(even) {
     background-color: #f8f9fa;
 }
 
+/* zLab2: Subtelne podświetlenie tła wiersza po najechaniu myszką */
 .table tbody tr:hover {
     background-color: #f2f4f8;
 }
 
+/* zLab5: Reguły Media Queries adaptujące layout wielokolumnowy do urządzeń mobilnych RWD */
 @media screen and (max-width: 850px) {
+    .panel-item,
+    .panel-item:nth-child(even) {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .panel-item img {
+        width: 100%;
+    }
+
     .answer-btn,
     .submit-btn,
     .action-btn,
     .quiz-btn {
         padding: 14px 20px;
+    }
+
+    .totals-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+}
+
+/* zLab5: Media Queries dla bardzo małych ekranów */
+@media screen and (max-width: 480px) {
+    .totals-grid {
+        grid-template-columns: 1fr;
     }
 }

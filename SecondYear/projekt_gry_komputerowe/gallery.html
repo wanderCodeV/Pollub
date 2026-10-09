@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+﻿<!-- zLab1cz1: Struktura HTML5 – galeria 3×3 z filtrowaniem-->
+<!-- zLab9 - Zastosowanie jQuery -->
+<!DOCTYPE html>
 <html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Górskie Rozgrywki - Galeria</title>
+    <!-- zLab2: Link do pliku CSS -->
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/gallery.css">
@@ -12,31 +15,34 @@
 
 <body>
 
+    <!-- zLab5: nagłówek z użyciem selektora header -->
     <header>
-        <h1>Galeria Górskich Motywów</h1>
-        <p>Odkryj najpiękniejsze inspiracje górskie z gier oraz z prawdziwych wypraw.</p>
+        <h1>Górskie Rozgrywki</h1>
+        <p>Galeria zdjęć z gier</p>
     </header>
 
+    <!-- zLab5: Pasek menu nawigacyjnego -->
     <nav class="navbar">
+        <!-- zLab3: Kontener logotypu w menu -->
         <div class="navbar-logo">GÓRY & GRY</div>
         <button class="navbar-toggle" id="navbarToggle" aria-label="Otwórz menu">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </button>
         <ul class="navbar-menu" id="navbarMenu">
-            <li><a href="index.html">O nas</a></li>
+            <li><a href="index.html">O stronie</a></li>
             <li><a href="info.html">Przewodnik</a></li>
             <li><a href="reviews.html">Recenzje</a></li>
             <li><a href="gallery.html" class="active">Galeria</a></li>
-            <li><a href="booking.html">Dołącz do nas</a></li>
+            <li><a href="rekrutacja.html">Rekrutacja</a></li>
             <li><a href="dashboard.html">Dashboard</a></li>
         </ul>
     </nav>
 
+    <!-- zLab5: Główny kontener z galerią -->
     <main>
+        <!-- zLab5: Sekcja główna galerii -->
         <section class="section-panel">
-
+            <!-- zLab9: Filtry galerii – obsługa jQuery w gallery.js -->
             <section class="gallery-controls">
                 <button type="button" class="filter-btn gallery-filter" data-filter="Wiedźmin">Wiedźmin</button>
                 <button type="button" class="filter-btn gallery-filter" data-filter="Skyrim">Skyrim</button>
@@ -60,13 +66,13 @@
         </section>
     </main>
 
-
-
+    <!-- zLab5: stopka z użyciem selektora footer -->
     <footer>
         <p>&copy; Projekt zaliczeniowy z podstaw aplikacji internetowych - Gry komputerowe</p>
         <p>Autor: Mariia Nyzhnyk</p>
     </footer>
 
+    <!-- zLab6: Dołączenie skryptów JS -->
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/script.js"></script>
