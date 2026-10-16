@@ -22,9 +22,7 @@ public:
 
     bool is_18();
 
-    void showInfoPerson();
-
-    virtual void show();
+    virtual void showInfo();
 
     virtual ~Person() = default;
 };

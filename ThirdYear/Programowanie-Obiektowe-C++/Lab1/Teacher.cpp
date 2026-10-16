@@ -27,11 +27,7 @@ bool Teacher::is_Phd() {
         return false;
 }
 
-void Teacher::showInfoTeacher() {
-    showInfoPerson();
+void Teacher::showInfo() {
+    Person::showInfo();
     cout << "Staz pracy: " << experience << " tytul naukowy: " << title << endl;
-}
-
-void Teacher::show() {
-    showInfoTeacher();
 }

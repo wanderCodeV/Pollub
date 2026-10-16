@@ -17,11 +17,7 @@ string Student::getIndex() {
     return index;
 }
 
-void Student::showInfoStudent() {
-    showInfoPerson();
+void Student::showInfo() {
+    Person::showInfo();
     cout << "Student index: " << index << endl;
-}
-
-void Student::show() {
-    showInfoStudent();
 }

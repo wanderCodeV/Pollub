@@ -16,9 +16,7 @@ public:
 
     string getIndex();
 
-    void showInfoStudent();
-
-    void show() override;
+    void showInfo() override;
 };
 
 

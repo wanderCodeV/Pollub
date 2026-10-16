@@ -84,13 +84,13 @@ int main() {
 
     //tablica ktora pokaze dzialanie polimorfizma
     std::vector<Person *> poli;
-    poli.push_back(new Student("Mariia", "Grazyna", 20, "909090"));
+    poli.push_back(new Student("Osoba", "Nazwisko", 20, "909090"));
     poli.push_back(new Person("Mariia2", "Grazyna1", 21));
     poli.push_back(new Teacher("Mariia2", "Grazyna2", 21, 8, "magister"));
 
     for (auto obj: poli) {
-        cout << "Objekt: ";
-        obj->show();
+        cout << "=== Objekt ===\n";
+        obj->showInfo();
         cout << endl;
     }
     return 0;

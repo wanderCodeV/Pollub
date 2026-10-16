@@ -18,8 +18,6 @@ public:
 
     bool is_Phd();
 
-    void showInfoTeacher();
-
-    void show() override;
+    void showInfo() override;
 };
 #endif // TEACHER_H_INCLUDED

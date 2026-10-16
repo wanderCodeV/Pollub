@@ -34,10 +34,6 @@ bool Person::is_18() {
         return false;
 }
 
-void Person::showInfoPerson() {
-    cout << "Imie: " << name << " nazwisko: " << surname << " wiek: " << age << endl;
-}
-
-void Person::show() {
-    showInfoPerson();
+void Person::showInfo() {
+    cout << "Imie: " << name << "\nNazwisko: " << surname << " \nWiek: " << age << endl;
 }
