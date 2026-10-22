@@ -1,4 +1,4 @@
-\# Symulator Kalkulatora Czterodziałaniowego
+# Symulator Kalkulatora Czterodziałaniowego
 
 
 
@@ -8,17 +8,17 @@ Program umożliwia wprowadzenie dwóch liczb całkowitych, wybór podstawowej op
 
 
 
-\## Pliki projektu
+## Pliki projektu
 
 
 
-\- \*\*klawiatura\_2.c\*\* – główny kod źródłowy programu w języku C.
+- \*\*klawiatura\_2.c\*\* – główny kod źródłowy programu w języku C.
 
-\- \*\*Lab1.2\_Klawiatura.sim1\*\* – plik symulacji układu.
+- \*\*Lab1.2\_Klawiatura.sim1\*\* – plik symulacji układu.
 
 
 
-\## Przypisanie przycisków (Klawiatura)
+## Przypisanie przycisków (Klawiatura)
 
 
 
