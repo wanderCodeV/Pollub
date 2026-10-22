@@ -12,9 +12,9 @@ Program umożliwia wprowadzenie dwóch liczb całkowitych, wybór podstawowej op
 
 
 
-- \*\*klawiatura\_2.c\*\* – główny kod źródłowy programu w języku C.
+- **klawiatura_2.c** – główny kod źródłowy programu w języku C.
 
-- \*\*Lab1.2\_Klawiatura.sim1\*\* – plik symulacji układu.
+- **Lab1.2_Klawiatura.sim1** – plik symulacji układu.
 
 
 
@@ -30,17 +30,17 @@ Do obsługi kalkulatora wykorzystywana jest klawiatura matrycowa, w której przy
 
 | :--- | :--- |
 
-| \*\*S1 – S10\*\* | Cyfry wprowadzanej liczby (0-9) |
+| **S1 – S10** | Cyfry wprowadzanej liczby (0-9) |
 
-| \*\*S12\*\* | Operacja „/” (dzielenie) |
+| **S12** | Operacja „/” (dzielenie) |
 
-| \*\*S13\*\* | Operacja „+” (dodawanie) |
+| **S13** | Operacja „+” (dodawanie) |
 
-| \*\*S14\*\* | Operacja „-” (odejmowanie) |
+| **S14** | Operacja „-” (odejmowanie) |
 
-| \*\*S15\*\* | Operacja „x” (mnożenie) |
+| **S15** | Operacja „x” (mnożenie) |
 
-| \*\*S16\*\* | Operacja „=” (równa się / oblicz wynik) |
+| **S16** | Operacja „=” (równa się / oblicz wynik) |
 
 
 
