@@ -2,7 +2,7 @@
 
 
 
-Zawiera implementację oraz symulację prostego kalkulatora czterodziałaniowego. 
+Zawiera implementację oraz symulację prostego kalkulatora czterodziałaniowego.
 
 Program umożliwia wprowadzenie dwóch liczb całkowitych, wybór podstawowej operacji arytmetycznej oraz wyświetlenie ostatecznego wyniku na wyświetlaczu 7-segmentowym.
 
@@ -12,9 +12,9 @@ Program umożliwia wprowadzenie dwóch liczb całkowitych, wybór podstawowej op
 
 
 
-\* \*\*`klawiatura\_2.c`\*\* – główny kod źródłowy programu w języku C.
+\- \*\*klawiatura\_2.c\*\* – główny kod źródłowy programu w języku C.
 
-\* \*\*`Lab1.2\_Klawiatura.sim1`\*\* – plik symulacji układu.
+\- \*\*Lab1.2\_Klawiatura.sim1\*\* – plik symulacji układu.
 
 
 
