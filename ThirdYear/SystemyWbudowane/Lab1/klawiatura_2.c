@@ -1,11 +1,9 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #define F_CPU 1000000L
-
 #include <stdbool.h>
-
 const uint8_t dig[] = {
-    0b11000000, 
+    0b11000000,
     0b11111001, 
     0b10100100, 
     0b10110000, 
@@ -16,9 +14,7 @@ const uint8_t dig[] = {
     0b10000000, 
     0b10010000  
 };
-
 volatile long answer = 0;
-
 int getkey()
 {
     int i, cnt_key = 0, nr_key = 0;
@@ -27,7 +23,6 @@ int getkey()
         PORTA = ~(1 << (i+4));
         if((PORTA & 0xF0) ^ (PINA & 0xF0))
             return 0xFF;
-        
         _delay_ms(1);
         char k = PINA & 0x0F;
         switch(k)
@@ -57,48 +52,53 @@ int getkey()
     }
     return nr_key;
 }
-
 void update_segments()
 {
     int i;
     long temp = answer;
-    if (temp < 0) temp = -temp; 
-    
+    bool is_negative = false;
+    if (temp < 0) {
+        is_negative = true;
+        temp = -temp;
+    }
     for(i = 0; i < 4; i++)
     {
-        PORTD = 0x0F;
-        PORTB = dig[temp % 10];
+        PORTD = 0x0F; 
+        if (temp == 0 && i > 0) {
+            if (is_negative) {
+                PORTB = 0b10111111;
+                is_negative = false;
+            } else {
+                PORTB = 0b11111111;
+            }
+        } 
+        else {
+            PORTB = dig[temp % 10];
+            temp /= 10;
+        }
         PORTD = ~(1<<i);
         _delay_ms(2);
-        temp /= 10;
     }
 }
-
 int main()
 {
     DDRA = 0xF0;
     PORTA = 0x0F;
-
     DDRB = 0xFF;
     PORTB = 0x00;
-
     DDRD = 0x0F;
     PORTD = 0x00;
-
     bool first_num = true;
     bool answer_flag = false;
     int last_key = 0;
     long num1 = 0, num2 = 0;
     char op = 0;
-
     while(1)
     {
         int curr_symb = getkey();
-        
         if (curr_symb >= 1 && curr_symb <= 16 && (last_key == 0 || last_key == 0xFF))
         {
             _delay_ms(20); 
-            
             if (curr_symb >= 1 && curr_symb <= 10)
             {
                 if (answer_flag)
@@ -108,7 +108,6 @@ int main()
                     first_num = true;
                     answer_flag = false;
                 }
-                
                 int digit = curr_symb - 1;
                 if (first_num) {
                     num1 = (num1 * 10 + digit) % 10000;
@@ -153,10 +152,8 @@ int main()
                 }
             }
         }
-        
         last_key = curr_symb;
         update_segments();
     }
-    
     return 0;
 }

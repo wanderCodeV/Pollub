@@ -160,3 +160,8 @@ _ReSharper*/
 # Recipe and encrypted files
 *.recipe
 *.enc
+
+# Build simulation
+*.elf
+*.hex
+*.cfg

@@ -1,6 +1,6 @@
 <circuit version="1.1.0-SR2" rev="260312" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
 
-<item itemtype="MCU" CircId="mega32-36" mainComp="false" ShowProp="Frequency" Show_id="true" Show_Val="true" Pos="-596,-348" rotation="0" hflip="1" vflip="1" label="ATmega32" idLabPos="0,-20" labelrot="0" valLabPos="14.1086,47.2605" valLabRot="0" Frequency="1 MHz" Program="../../../3rok/SystemyWbudowane/build_klawiatura_2/klawiatura_2.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" MainMcu="true" SerialMon="-1" />
+<item itemtype="MCU" CircId="mega32-36" mainComp="false" ShowProp="Frequency" Show_id="true" Show_Val="true" Pos="-596,-348" rotation="0" hflip="1" vflip="1" label="ATmega32" idLabPos="0,-20" labelrot="0" valLabPos="14.1086,47.2605" valLabRot="0" Frequency="1 MHz" Program="build_klawiatura_2/klawiatura_2.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Wdt_enabled="false" MainMcu="true" SerialMon="-1" />
 
 <item itemtype="Fixed Voltage" CircId="Fixed Voltage-37" mainComp="false" ShowProp="Voltage" Show_id="false" Show_Val="true" Pos="-636,-276" rotation="0" hflip="1" vflip="1" label="Fixed Voltage-37" idLabPos="-64,-24" labelrot="0" valLabPos="-16,8" valLabRot="0" Voltage="5 V" Out="true" />
 
@@ -386,8 +386,6 @@
 
 <item itemtype="Connector" uid="Connector-419" startpinid="Push-207-pinP0" endpinid="Node-220-1" pointList="-376,-348,-376,-324" />
 
-<item itemtype="Connector" uid="Connector-420" startpinid="Push-196-pinP0" endpinid="Node-193-1" pointList="-424,-348,-424,-324" />
-
 <item itemtype="Connector" uid="Connector-425" startpinid="Node-195-2" endpinid="Node-204-0" pointList="-384,-252,-384,-300" />
 
 <item itemtype="Connector" uid="Connector-426" startpinid="Node-203-2" endpinid="Node-189-0" pointList="-424,-276,-376,-276" />
@@ -485,5 +483,7 @@
 <item itemtype="Connector" uid="Connector-540" startpinid="Socket-99-pin9" endpinid="mega32-36-PORTD2" pointList="-776,-516,-876,-516,-876,-220,-604,-220" />
 
 <item itemtype="Connector" uid="Connector-541" startpinid="Socket-99-pin8" endpinid="mega32-36-PORTD3" pointList="-776,-524,-884,-524,-884,-212,-604,-212" />
+
+<item itemtype="Connector" uid="Connector-420" startpinid="Push-196-pinP0" endpinid="Node-193-1" pointList="-424,-348,-424,-324" />
 
 </circuit>
