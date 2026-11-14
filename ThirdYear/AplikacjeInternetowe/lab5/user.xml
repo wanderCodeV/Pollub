@@ -16,4 +16,12 @@
         <date>2018-10-10</date>
         <status>1</status>
     </user>
-</users>
+    <user>
+        <userName>MariiaN</userName>
+        <passwd>$2y$10$BrKRkHli4QkFbEvwM6qQ9Oqh7gIKKowYcrvJgL6nuUnfly9k/CmS.</passwd>
+        <fullName>Mariia Nyzhnyk</fullName>
+        <email>mariia@gmail.com</email>
+        <date>2026-11-14</date>
+        <status>1</status>
+    </user>
+<user><userName>olenkaSuper</userName><passwd>$2y$10$F1gCV0bf6jFxbVlClippAuqcGHKs8s6BIL70Qc3XKkcWY0mdpAr3G</passwd><fullName>Olena Zaiats</fullName><email>olenka@poczta.pl</email><date>2026-11-14</date><status>1</status></user></users>

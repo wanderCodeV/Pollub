@@ -4,14 +4,14 @@ class User
     const STATUS_USER = 1;
     const STATUS_ADMIN = 2;
 
-    protected $userName;
-    protected $passwd;
-    protected $fullName;
-    protected $email;
-    protected $date;
-    protected $status;
+    protected string $userName;
+    protected string $passwd;
+    protected string $fullName;
+    protected string $email;
+    protected string $date;
+    protected int $status;
 
-    function __construct($userName, $fullName, $email, $passwd)
+    function __construct(string $userName, string $fullName, string $email, string $passwd)
     {
         $this->userName = $userName;
         $this->fullName = $fullName;
@@ -26,7 +26,7 @@ class User
         echo $this->userName . " " . $this->fullName . " " . $this->email . " status: " . $this->status . " " . $this->date . "<br/>";
     }
 
-    public function setUserName($userName)
+    public function setUserName(string $userName)
     {
         $this->userName = $userName;
     }
@@ -36,7 +36,7 @@ class User
         return $this->userName;
     }
 
-    public function setPasswd($passwd)
+    public function setPasswd(string $passwd)
     {
         $this->passwd = $passwd;
     }
@@ -46,7 +46,7 @@ class User
         return $this->passwd;
     }
 
-    public function setFullName($fullName)
+    public function setFullName(string $fullName)
     {
         $this->fullName = $fullName;
     }
@@ -56,7 +56,7 @@ class User
         return $this->fullName;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -66,7 +66,7 @@ class User
         return $this->email;
     }
 
-    public function setDate($date)
+    public function setDate(string $date)
     {
         $this->date = $date;
     }
@@ -76,7 +76,7 @@ class User
         return $this->date;
     }
 
-    public function setStatus($status)
+    public function setStatus(int $status)
     {
         $this->status = $status;
     }
@@ -86,12 +86,17 @@ class User
         return $this->status;
     }
 
-    static function getAllUsers($plik = "users.json")
+    static function getAllUsers($plik = "user.json")
     {
         $tab = json_decode(file_get_contents($plik));
-        foreach ($tab as $val) {
-            echo "<p>" . $val->userName . " " . $val->fullName . " " . $val->date . "</p>";
-        }
+        echo "<ul>";
+        foreach ($tab as $val):
+            $userName = $val->userName;
+            $fullName = $val->fullName;
+            $date = $val->date;
+            echo "<li>$userName, $fullName, $date</li>";
+        endforeach;
+        echo "</ul>";
     }
 
     function toArray()
@@ -107,16 +112,16 @@ class User
         return $arr;
     }
 
-    function save($plik = "users.json")
+    function save($plik = "user.json")
     {
         $tab = json_decode(file_get_contents($plik), true);
         array_push($tab, $this->toArray());
         file_put_contents($plik, json_encode($tab));
     }
 
-    function saveXML()
+    function saveXML($plik = "user.xml")
     {
-        $xml = simplexml_load_file('users.xml');
+        $xml = simplexml_load_file($plik);
         $xmlCopy = $xml->addChild("user");
         $xmlCopy->addChild("userName", $this->userName);
         $xmlCopy->addChild("passwd", $this->passwd);
@@ -124,12 +129,12 @@ class User
         $xmlCopy->addChild("email", $this->email);
         $xmlCopy->addChild("date", $this->date);
         $xmlCopy->addChild("status", $this->status);
-        $xml->asXML('users.xml');
+        $xml->asXML($plik);
     }
 
-    static function getAllUsersFromXML()
+    static function getAllUsersFromXML($plik = "user.xml")
     {
-        $allUsers = simplexml_load_file('users.xml');
+        $allUsers = simplexml_load_file($plik);
         echo "<ul>";
         foreach ($allUsers as $user):
             $userName = $user->userName;

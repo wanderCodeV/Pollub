@@ -35,7 +35,7 @@ function pokaz()
     }
 }
 
-function pokaz_zamowienie($tut)
+function pokaz_zamowienie(string $tut)
 {
     $linie = file($_SERVER['DOCUMENT_ROOT'] . "/dane.txt");
     foreach ($linie as $linia) {

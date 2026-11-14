@@ -15,6 +15,7 @@ if (filter_input(INPUT_POST, 'submit', FILTER_SANITIZE_FULL_SPECIAL_CHARS)) {
       $user->saveXML();
    }
 }
-
+echo "<h3>Wszyscy użytkownicy json:</h3>";
 User::getAllUsers();
+echo "<h3>Wszyscy użytkownicy xml:</h3>";
 User::getAllUsersFromXML();

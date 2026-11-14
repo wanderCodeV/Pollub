@@ -1,7 +1,7 @@
 <?php
 class RegistrationForm
 {
-    protected $user;
+    protected ?User $user = null;
 
     function __construct()
     { ?>

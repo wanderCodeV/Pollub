@@ -10,9 +10,25 @@
   {
     "userName": "kubus",
     "passwd": "kubus",
-    "fullName": "Kubuś Puchatek",
+    "fullName": "Kubu\u015b Puchatek",
     "email": "kubus@stumilowylas.com",
     "date": "2019-10-30",
+    "status": 1
+  },
+  {
+    "userName": "MariiaN",
+    "passwd": "$2y$10$sOK86svBuBr6v5dW9muKSeU5\/EFNliOP6hMKQmzCcZKW7Mlpl.YVi",
+    "fullName": "Mariia Nyzhnyk",
+    "email": "mariia@gmail.com",
+    "date": "2026-11-14",
+    "status": 1
+  },
+  {
+    "userName": "olenkaSuper",
+    "passwd": "$2y$10$F1gCV0bf6jFxbVlClippAuqcGHKs8s6BIL70Qc3XKkcWY0mdpAr3G",
+    "fullName": "Olena Zaiats",
+    "email": "olenka@poczta.pl",
+    "date": "2026-11-14",
     "status": 1
   }
 ]

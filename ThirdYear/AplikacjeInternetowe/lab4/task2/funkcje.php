@@ -37,7 +37,7 @@ function walidacja()
     }
 }
 
-function dopliku($nazwaPliku, $tablicaDanych)
+function dopliku(string $nazwaPliku, array $tablicaDanych)
 {
     $dane = "";
     foreach ($tablicaDanych as $key => $val) {
@@ -69,7 +69,7 @@ function pokaz()
     }
 }
 
-function pokaz_zamowienie($tut)
+function pokaz_zamowienie(string $tut)
 {
     $linie = file($_SERVER['DOCUMENT_ROOT'] . "/dane.txt");
     foreach ($linie as $linia) {
