@@ -21,6 +21,9 @@ int main() {
     
     cout << "\nUsuwanie Jana Nowaka (17 lat)\n";
     c.deleteCitizen("Nowak", 17);
+
+    cout << endl;
+    c.show_city();
     c.show_citizens();
     
     return 0;

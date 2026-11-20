@@ -42,9 +42,24 @@ int City::adults() const {
 }
 
 void City::postal_codes() const {
-    map<string, int> stats;
-    for(const auto& c : citizens)
-        stats[c.getPostalCode()]++;
-    for(const auto& pair : stats)
-        cout << pair.first << " -> " << pair.second << " mieszkancow\n";
+    vector<Citizen> sorted_citizens = citizens;
+    sort(sorted_citizens.begin(), sorted_citizens.end(), [](const Citizen& a, const Citizen& b) {
+        return a.getPostalCode() < b.getPostalCode();
+    });
+    auto it = sorted_citizens.begin();
+    while (it != sorted_citizens.end()) {
+        string code = it->getPostalCode();
+        auto range = equal_range(it, sorted_citizens.end(), Citizen("", "", 0, ' ', code), [](const Citizen& a, const Citizen& b) {
+            return a.getPostalCode() < b.getPostalCode();
+        });
+        int count = distance(range.first, range.second);
+        cout << code << " -> " << count << " mieszkancow\n";
+        it = range.second;
+    }
+
+    // map<string, int> stats;
+    // for(const auto& c : citizens)
+    //     stats[c.getPostalCode()]++;
+    // for(const auto& pair : stats)
+    //     cout << pair.first << " -> " << pair.second << " mieszkancow\n";
 }
